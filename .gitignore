@@ -1,0 +1,9 @@
+.DS_Store
+/.editorconfig
+/.env
+/.eslintrc.json
+/.nyc_output
+/.vscode
+/coverage
+/dist
+/node_modules

@@ -1,0 +1,32 @@
+{
+  "name": "@dword-design/nuxt-atomizer",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "dword-design/nuxt-atomizer",
+  "license": "MIT",
+  "author": "Sebastian Landwehr <info@dword-design.de>",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "depgraph": "base depgraph",
+    "prepare": "base prepare",
+    "prepublishOnly": "base prepublishOnly",
+    "test": "base test"
+  },
+  "dependencies": {
+    "@dword-design/functions": "^2.7.2",
+    "get-package-name": "^1.1.0",
+    "serve-static": "^1.14.1",
+    "webpack-atomizer-loader": "dword-design/webpack-atomizer-loader#fork"
+  },
+  "devDependencies": {
+    "@dword-design/base": "^5.3.1",
+    "axios": "^0.19.2",
+    "fs-extra": "^8.1.0",
+    "nuxt": "^2.11.0",
+    "postcss": "^7.0.26",
+    "with-local-tmp-dir": "^2.2.7"
+  }
+}
