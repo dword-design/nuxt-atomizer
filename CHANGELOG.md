@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/dword-design/nuxt-atomizer/compare/v1.0.2...v1.1.0) (2020-03-21)
+
+
+### Bug Fixes
+
+* upgrades ([f373a3f](https://github.com/dword-design/nuxt-atomizer/commit/f373a3f7c758c525d56255642535b6e8799524cf))
+
+
+### Features
+
+* add local options ([a8da465](https://github.com/dword-design/nuxt-atomizer/commit/a8da4654bb419a8bca986f529c67a781a4640b80))
+
 ## [1.0.2](https://github.com/dword-design/nuxt-atomizer/compare/v1.0.1...v1.0.2) (2020-03-19)
 
 
