@@ -3,10 +3,11 @@ import getPackageName from 'get-package-name'
 import P from 'path'
 import { flatMap, compact } from '@dword-design/functions'
 
-export default function () {
+export default function (options) {
 
+  options = { ...this.options.atomizer, ...options }
+  const { plugins = [] } = options
   const cssDest = P.join(this.options.buildDir, 'acss.css')
-  const { plugins = [] } = this.options.atomizer ?? {}
 
   this.extendBuild(config => {
     config.module.rules
@@ -18,7 +19,7 @@ export default function () {
           postcssPlugins: plugins |> flatMap('postcssPlugins') |> compact,
           minimize: true,
           config: {
-            configs: this.options.atomizer,
+            configs: options,
             cssDest: P.relative(process.cwd(), cssDest),
             options: {
               rules: plugins |> flatMap('rules') |> compact,
@@ -28,7 +29,7 @@ export default function () {
       })
   })
   
-  /*const { configs } = require(this.options.atomizer.configPath)
+  /*const { configs } = require(options.configPath)
   if (this.options.dev) {
     this.options.serverMiddleware.push(
       {
