@@ -30,5 +30,8 @@
     "nuxt": "^2.11.0",
     "postcss": "^7.0.26",
     "with-local-tmp-dir": "^2.2.7"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

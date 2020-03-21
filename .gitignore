@@ -1,7 +1,7 @@
 .DS_Store
 /.cz.json
 /.editorconfig
-/.env
+/.env.json
 /.eslintrc.json
 /.nyc_output
 /.releaserc.json

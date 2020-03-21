@@ -1,22 +1,25 @@
 name: build
-
 on:
   push:
     branches:
-      - '**'
-
+      - "**"
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-        node: [10, 12]
+        os:
+          - macos-latest
+          - windows-latest
+          - ubuntu-latest
+        node:
+          - 10
+          - 12
         exclude:
           - os: macos-latest
             node: 10
           - os: windows-latest
             node: 10
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -31,7 +34,6 @@ jobs:
           COVERALLS_SERVICE_NAME: github
           COVERALLS_GIT_COMMIT: ${{ github.sha }}
           COVERALLS_GIT_BRANCH: ${{ github.ref }}
-
   release:
     needs: test
     if: github.ref == 'refs/heads/master'
@@ -51,5 +53,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          yarn semantic-release
+        run: yarn semantic-release
