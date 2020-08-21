@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@dword-design/base": "^6.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "fs-extra": "^9.0.0",
     "nuxt": "^2.11.0",
     "postcss": "^7.0.26",
