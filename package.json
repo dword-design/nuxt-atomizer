@@ -10,11 +10,12 @@
     "dist"
   ],
   "scripts": {
+    "clean": "base clean",
     "commit": "base commit",
-    "depgraph": "base depgraph",
+    "dev": "base dev",
+    "lint": "base lint",
     "prepare": "base prepare",
     "prepublishOnly": "base prepublishOnly",
-    "release": "base release",
     "test": "base test"
   },
   "dependencies": {
@@ -25,7 +26,7 @@
   },
   "devDependencies": {
     "@dword-design/base": "^6.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "fs-extra": "^9.0.0",
     "nuxt": "^2.11.0",
     "postcss": "^7.0.26",
