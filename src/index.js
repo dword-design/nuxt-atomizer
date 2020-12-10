@@ -1,5 +1,5 @@
 import { compact, flatMap } from '@dword-design/functions'
-import getPackageName from 'get-package-name'
+import packageName from 'depcheck-package-name'
 import P from 'path'
 import serveStatic from 'serve-static'
 
@@ -10,7 +10,7 @@ export default function (moduleOptions) {
     config.module.rules
       .find(rule => rule.test.test('.js'))
       .use.unshift({
-        loader: getPackageName(require.resolve('webpack-atomizer-loader')),
+        loader: packageName`webpack-atomizer-loader`,
         query: {
           config: {
             configs: options,
