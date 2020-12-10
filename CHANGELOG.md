@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.3...v1.1.4) (2020-12-10)
+
+
+### Bug Fixes
+
+* replace get-package-name with depcheck-package-name ([f5c88b0](https://github.com/dword-design/nuxt-atomizer/commit/f5c88b0555006268cec574bb72cbc008f75b15d0))
+
 ## [1.1.3](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.2...v1.1.3) (2020-12-10)
 
 
