@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@dword-design/functions": "^2.7.2",
-    "get-package-name": "^1.1.0",
+    "get-package-name": "^2.0.0",
     "serve-static": "^1.14.1",
     "webpack-atomizer-loader": "dword-design/webpack-atomizer-loader#fork"
   },
