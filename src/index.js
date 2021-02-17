@@ -16,12 +16,11 @@ export default function (moduleOptions) {
             configs: options,
             cssDest: P.relative(process.cwd(), cssDest),
             options: {
-              rules: options.plugins |> flatMap('rules') |> compact,
+              rules: compact(flatMap('rules')(options.plugins)),
             },
           },
           minimize: true,
-          postcssPlugins:
-            options.plugins |> flatMap('postcssPlugins') |> compact,
+          postcssPlugins: compact(flatMap('postcssPlugins')(options.plugins)),
         },
       })
   })

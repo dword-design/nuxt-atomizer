@@ -16,7 +16,10 @@ export default {
       }
     `
       )
-      const nuxt = new Nuxt({ dev: false, modules: [require.resolve('.')] })
+      const nuxt = new Nuxt({
+        dev: false,
+        modules: [require.resolve('.')],
+      })
       await new Builder(nuxt).build()
       try {
         await nuxt.listen()
