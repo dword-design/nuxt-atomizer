@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.6...v1.1.7) (2021-02-17)
+
+
+### Bug Fixes
+
+* update dependency postcss to v8 ([#11](https://github.com/dword-design/nuxt-atomizer/issues/11)) ([3ccdd30](https://github.com/dword-design/nuxt-atomizer/commit/3ccdd300cb6c1e5aaf666341ff7dd0fc9f0bdef2))
+
 ## [1.1.6](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.5...v1.1.6) (2021-02-17)
 
 
