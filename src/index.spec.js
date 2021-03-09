@@ -17,6 +17,7 @@ export default {
     `
       )
       const nuxt = new Nuxt({
+        createRequire: 'native',
         dev: false,
         modules: [require.resolve('.')],
       })
