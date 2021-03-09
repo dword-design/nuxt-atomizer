@@ -3,7 +3,7 @@
 <!-- /TITLE -->
 
 <!-- BADGES/ -->
-[![NPM version](https://img.shields.io/npm/v/@dword-design/nuxt-atomizer.svg)](https://npmjs.org/package/@dword-design/nuxt-atomizer)
+[![npm version](https://img.shields.io/npm/v/@dword-design/nuxt-atomizer.svg)](https://npmjs.org/package/@dword-design/nuxt-atomizer)
 ![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)
 [![Build status](https://github.com/dword-design/nuxt-atomizer/workflows/build/badge.svg)](https://github.com/dword-design/nuxt-atomizer/actions)
 [![Coverage status](https://img.shields.io/coveralls/dword-design/nuxt-atomizer)](https://coveralls.io/github/dword-design/nuxt-atomizer)
@@ -41,7 +41,7 @@
 ## Install
 
 ```bash
-# NPM
+# npm
 $ npm install @dword-design/nuxt-atomizer
 
 # Yarn
