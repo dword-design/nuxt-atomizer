@@ -5,6 +5,7 @@ import serveStatic from 'serve-static'
 
 export default function (moduleOptions) {
   const options = { plugins: [], ...this.options.atomizer, ...moduleOptions }
+
   const cssDest = P.join(this.options.buildDir, 'acss.css')
   this.extendBuild(config => {
     config.module.rules
