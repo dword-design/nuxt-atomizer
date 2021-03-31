@@ -1,3 +1,10 @@
+## [1.1.12](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.11...v1.1.12) (2021-03-31)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#23](https://github.com/dword-design/nuxt-atomizer/issues/23)) ([d174b44](https://github.com/dword-design/nuxt-atomizer/commit/d174b44041441ec2ce1ae0b4abbdb748380f5609))
+
 ## [1.1.11](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.10...v1.1.11) (2021-03-23)
 
 
