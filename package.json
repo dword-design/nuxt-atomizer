@@ -31,7 +31,7 @@
     "fs-extra": "^9.0.0",
     "nuxt": "~2.15.0",
     "postcss": "^8.0.0",
-    "with-local-tmp-dir": "^2.2.7"
+    "with-local-tmp-dir": "^2.2.18"
   },
   "publishConfig": {
     "access": "public"
