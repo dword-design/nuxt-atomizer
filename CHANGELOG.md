@@ -1,3 +1,10 @@
+## [1.1.16](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.15...v1.1.16) (2021-04-27)
+
+
+### Bug Fixes
+
+* update dependency with-local-tmp-dir to v3 ([#31](https://github.com/dword-design/nuxt-atomizer/issues/31)) ([19e6def](https://github.com/dword-design/nuxt-atomizer/commit/19e6deff858d8db8641c1b9640add2a58c48de4a))
+
 ## [1.1.15](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.14...v1.1.15) (2021-04-22)
 
 
