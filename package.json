@@ -19,7 +19,7 @@
     "test": "base test"
   },
   "dependencies": {
-    "@dword-design/functions": "^3.0.0",
+    "@dword-design/functions": "^4.0.0",
     "depcheck-package-name": "^1.0.0",
     "serve-static": "^1.14.1",
     "webpack-atomizer-loader": "dword-design/webpack-atomizer-loader#fork"
