@@ -1,3 +1,12 @@
+## [1.1.20](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.19...v1.1.20) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency depcheck-package-name to v2 ([#39](https://github.com/dword-design/nuxt-atomizer/issues/39)) ([426ed69](https://github.com/dword-design/nuxt-atomizer/commit/426ed69c11595a8c707367b0ae2233901631288a))
+* update dependency fs-extra to v10 ([#40](https://github.com/dword-design/nuxt-atomizer/issues/40)) ([4567980](https://github.com/dword-design/nuxt-atomizer/commit/45679803b5916c67dab29a5eb9465356c2bb6bec))
+* update dependency with-local-tmp-dir to v4 ([#41](https://github.com/dword-design/nuxt-atomizer/issues/41)) ([65143de](https://github.com/dword-design/nuxt-atomizer/commit/65143deb30558a4aea8979bb98dcf3a274731e4b))
+
 ## [1.1.19](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.18...v1.1.19) (2021-05-03)
 
 
