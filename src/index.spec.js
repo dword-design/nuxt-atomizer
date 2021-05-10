@@ -53,12 +53,14 @@ export default {
           plugins: [
             {
               postcssPlugins: [
-                postcss.plugin('test', () => root =>
-                  root.walkDecls(decl => {
-                    if (decl.prop === 'color') {
-                      decl.prop = 'background'
-                    }
-                  })
+                postcss.plugin(
+                  'test',
+                  () => root =>
+                    root.walkDecls(decl => {
+                      if (decl.prop === 'color') {
+                        decl.prop = 'background'
+                      }
+                    })
                 ),
               ],
             },
