@@ -2,7 +2,7 @@
   "name": "@dword-design/nuxt-atomizer",
   "version": "1.1.22",
   "repository": "dword-design/nuxt-atomizer",
-  "funding": "https://www.buymeacoffee.com/dword",
+  "funding": "https://github.com/sponsors/dword-design",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "main": "dist/index.js",
