@@ -2,6 +2,7 @@ import { endent, property } from '@dword-design/functions'
 import axios from 'axios'
 import { outputFile } from 'fs-extra'
 import { Builder, Nuxt } from 'nuxt'
+import outputFiles from 'output-files'
 import postcss from 'postcss'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
@@ -34,7 +35,43 @@ export default {
             |> property('data')
         ).toEqual('.C\\(red\\){color:red}')
       } finally {
-        nuxt.close()
+        await nuxt.close()
+      }
+    }),
+  'multiple files': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        pages: {
+          'index.vue': endent`
+            <template>
+              <div class="C(red)">Hello world</div>
+            </template>
+          `,
+          'other.vue': endent`
+            <template>
+              <div class="C(green)">Hello world</div>
+            </template>
+          `,
+        },
+      })
+
+      const nuxt = new Nuxt({
+        dev: false,
+        modules: [require.resolve('.')],
+      })
+      await new Builder(nuxt).build()
+      try {
+        await nuxt.listen()
+        expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
+          '"/acss.css"'
+        )
+        expect(
+          axios.get('http://localhost:3000/acss.css')
+            |> await
+            |> property('data')
+        ).toEqual('.C\\(green\\){color:green}.C\\(red\\){color:red}')
+      } finally {
+        await nuxt.close()
       }
     }),
   plugin: () =>
@@ -91,7 +128,7 @@ export default {
             |> property('data')
         ).toEqual('.C\\(red\\){background:red}.Foo{font-weight:700}')
       } finally {
-        nuxt.close()
+        await nuxt.close()
       }
     }),
   'top-level option': () =>
@@ -124,7 +161,7 @@ export default {
             |> property('data')
         ).toEqual('.C\\(foo\\){color:red}')
       } finally {
-        nuxt.close()
+        await nuxt.close()
       }
     }),
   variables: () =>
@@ -154,7 +191,7 @@ export default {
             |> property('data')
         ).toEqual('.C\\(foo\\){color:red}')
       } finally {
-        nuxt.close()
+        await nuxt.close()
       }
     }),
   'vue file': () =>
@@ -184,7 +221,7 @@ export default {
             |> property('data')
         ).toEqual('.C\\(red\\){color:red}')
       } finally {
-        nuxt.close()
+        await nuxt.close()
       }
     }),
 }

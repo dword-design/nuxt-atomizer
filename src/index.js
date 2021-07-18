@@ -1,4 +1,4 @@
-import { compact, flatMap } from '@dword-design/functions'
+import { compact } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
 import P from 'path'
 import serveStatic from 'serve-static'
@@ -24,12 +24,13 @@ export default function (moduleOptions) {
             configs: options,
             cssDest: P.relative(process.cwd(), cssDest),
             options: {
-              rules: options.plugins |> flatMap('rules') |> compact,
+              rules: compact(options.plugins.flatMap(plugin => plugin.rules)),
             },
           },
           minimize: true,
-          postcssPlugins:
-            options.plugins |> flatMap('postcssPlugins') |> compact,
+          postcssPlugins: compact(
+            options.plugins.flatMap(plugin => plugin.postcssPlugins)
+          ),
         },
       })
     }
