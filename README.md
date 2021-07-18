@@ -91,6 +91,13 @@ Here is the result:
 
 <img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with Atomic CSS! 🙌'" src="https://github.com/dword-design/nuxt-atomizer/blob/master/doc/screenshot.png" width="400">
 
+<iframe src="https://codesandbox.io/embed/demo-nuxt-atomizer-k8cky?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  title="demo-nuxt-atomizer"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
 ## Options
 
 You can customize Atomic CSS by adding options either to the module or top-level options. It takes the same options as [webpack-atomizer-loader](https://github.com/acss-io/webpack-atomizer-loader#atomic-css-configuration).
