@@ -93,12 +93,21 @@ Here is the result:
 
 ## Options
 
-You can customize Atomic CSS by adding options either to the module or top-level options.
+You can customize Atomic CSS by adding options either to the module or top-level options. It takes the same options as [webpack-atomizer-loader](https://github.com/acss-io/webpack-atomizer-loader#atomic-css-configuration).
 
 ```js
 export default {
   modules: [
-    ['nuxt-atomizer', { /* options */ }],
+    ['nuxt-atomizer', {
+      breakPoints: {
+          sm: '@media screen(min-width=750px)',
+          md: '@media(min-width=1000px)',
+          lg: '@media(min-width=1200px)'
+      },
+      custom: {
+          primary: 'red',
+      },
+    }],
   ],
   atomizer: {
     /* options */
@@ -106,21 +115,9 @@ export default {
 }
 ```
 
-### Custom variables
-
-```js
-export default {
-  modules: [
-    ['nuxt-atomizer', {
-      custom: { foo: 'red' },
-    }],
-  ],
-}
-```
-
 ```html
 <template>
-  <div class="C(foo)">I am red now</div>
+  <div class="C(primary)">I am red now</div>
 </template>
 ```
 
