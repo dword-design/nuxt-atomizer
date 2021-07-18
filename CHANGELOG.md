@@ -1,3 +1,11 @@
+## [1.1.29](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.28...v1.1.29) (2021-07-18)
+
+
+### Bug Fixes
+
+* add embed ([d574884](https://github.com/dword-design/nuxt-atomizer/commit/d574884837c14423081961b70976059977039646))
+* fix ([9d3fdd1](https://github.com/dword-design/nuxt-atomizer/commit/9d3fdd183fdb092d02d1e716c2f8812ef9900d69))
+
 ## [1.1.28](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.27...v1.1.28) (2021-07-18)
 
 
