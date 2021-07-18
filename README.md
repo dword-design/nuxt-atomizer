@@ -91,8 +91,6 @@ Here is the result:
 
 <img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with Atomic CSS! 🙌'" src="https://github.com/dword-design/nuxt-atomizer/blob/master/doc/screenshot.png" width="400">
 
-<img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with Atomic CSS! 🙌'" src="doc/screenshot.png" width="400">
-
 ## Options
 
 You can customize Atomic CSS by adding options either to the module or top-level options. It takes the same options as [webpack-atomizer-loader](https://github.com/acss-io/webpack-atomizer-loader#atomic-css-configuration).
