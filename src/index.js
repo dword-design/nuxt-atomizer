@@ -8,9 +8,16 @@ export default function (moduleOptions) {
 
   const cssDest = P.join(this.options.buildDir, 'acss.css')
   this.extendBuild(config => {
-    config.module.rules
-      .find(rule => rule.test.test('.js'))
-      .use.unshift({
+    const rules = config.module.rules.filter(rule =>
+      ['.js', '.vue'].some(extension => rule.test.test(extension))
+    )
+    for (const rule of rules) {
+      if (!rule.use) {
+        rule.use = [{ loader: rule.loader, options: rule.options }]
+        delete rule.loader
+        delete rule.options
+      }
+      rule.use.unshift({
         loader: packageName`webpack-atomizer-loader`,
         query: {
           config: {
@@ -25,6 +32,7 @@ export default function (moduleOptions) {
             options.plugins |> flatMap('postcssPlugins') |> compact,
         },
       })
+    }
   })
   /* const { configs } = require(options.configPath)
   if (this.options.dev) {

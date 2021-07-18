@@ -1,5 +1,5 @@
 {
-  "name": "@dword-design/nuxt-atomizer",
+  "name": "nuxt-atomizer",
   "version": "1.1.24",
   "description": "Module that adds Atomic CSS library support to a Nuxt.js app. Generates atomic classes from code.",
   "keywords": [

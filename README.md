@@ -1,12 +1,12 @@
 <!-- TITLE/ -->
-# @dword-design/nuxt-atomizer
+# nuxt-atomizer
 <!-- /TITLE -->
 
 <!-- BADGES/ -->
   <p>
-    <a href="https://npmjs.org/package/@dword-design/nuxt-atomizer">
+    <a href="https://npmjs.org/package/nuxt-atomizer">
       <img
-        src="https://img.shields.io/npm/v/@dword-design/nuxt-atomizer.svg"
+        src="https://img.shields.io/npm/v/nuxt-atomizer.svg"
         alt="npm version"
       >
     </a><img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible"><a href="https://github.com/dword-design/nuxt-atomizer/actions">
@@ -58,12 +58,71 @@ Module that adds Atomic CSS library support to a Nuxt.js app. Generates atomic c
 
 ```bash
 # npm
-$ npm install @dword-design/nuxt-atomizer
+$ npm install nuxt-atomizer
 
 # Yarn
-$ yarn add @dword-design/nuxt-atomizer
+$ yarn add nuxt-atomizer
 ```
 <!-- /INSTALL -->
+
+## Usage
+
+Add the module to your Nuxt.js modules list in nuxt.config.js:
+
+```js
+export default {
+  modules: [
+    'nuxt-atomizer',
+  ],
+}
+```
+
+That's already it, now you can add atomic classes to your components and they are generated on the fly!
+
+```html
+<template>
+  <div class="P(2rem) Bgc(#fafafa) C(#111) Bd Bdw(2px) Bdc(#ccc) Bdrs(.5rem) Ff(ss)">
+    Hey there, I'm styled with Atomic CSS! 🙌
+  </div>
+</template>
+```
+
+Here is the result:
+
+<img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with Atomic CSS! 🙌'" src="doc/screenshot.png" width="400">
+
+## Options
+
+You can customize Atomic CSS by adding options either to the module or top-level options.
+
+```js
+export default {
+  modules: [
+    ['nuxt-atomizer', { /* options */ }],
+  ],
+  atomizer: {
+    /* options */
+  },
+}
+```
+
+### Custom variables
+
+```js
+export default {
+  modules: [
+    ['nuxt-atomizer', {
+      custom: { foo: 'red' },
+    }],
+  ],
+}
+```
+
+```html
+<template>
+  <div class="C(foo)">I am red now</div>
+</template>
+```
 
 <!-- LICENSE/ -->
 ## Contribute

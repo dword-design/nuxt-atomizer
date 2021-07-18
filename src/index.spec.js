@@ -157,4 +157,34 @@ export default {
         nuxt.close()
       }
     }),
+  'vue file': () =>
+    withLocalTmpDir(async () => {
+      await outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div class="C(red)">Hello world</div>
+          </template>
+        `
+      )
+
+      const nuxt = new Nuxt({
+        dev: false,
+        modules: [require.resolve('.')],
+      })
+      await new Builder(nuxt).build()
+      try {
+        await nuxt.listen()
+        expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
+          '"/acss.css"'
+        )
+        expect(
+          axios.get('http://localhost:3000/acss.css')
+            |> await
+            |> property('data')
+        ).toEqual('.C\\(red\\){color:red}')
+      } finally {
+        nuxt.close()
+      }
+    }),
 }
