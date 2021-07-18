@@ -1,3 +1,11 @@
+## [1.1.25](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.24...v1.1.25) (2021-07-18)
+
+
+### Bug Fixes
+
+* adjust options doc ([fffb420](https://github.com/dword-design/nuxt-atomizer/commit/fffb42038da3d1ab902ea0dc3cba1ec6ef30fe41))
+* vue file support and make project open-source ([4b5ae6b](https://github.com/dword-design/nuxt-atomizer/commit/4b5ae6bd3b578dad0cfe37de01f69b1740577880))
+
 ## [1.1.24](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.23...v1.1.24) (2021-07-18)
 
 
