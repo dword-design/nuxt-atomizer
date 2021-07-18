@@ -1,3 +1,11 @@
+## [1.1.28](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.27...v1.1.28) (2021-07-18)
+
+
+### Bug Fixes
+
+* add test for multiple files ([6a0f596](https://github.com/dword-design/nuxt-atomizer/commit/6a0f596b1c7b8295084d0319f56d5ad0d540f762))
+* fix readme image ([0d7bee3](https://github.com/dword-design/nuxt-atomizer/commit/0d7bee3700cd0bb1c46299d0214bcb85e040e4c2))
+
 ## [1.1.27](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.26...v1.1.27) (2021-07-18)
 
 
