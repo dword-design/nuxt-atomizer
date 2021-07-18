@@ -50,7 +50,7 @@
 <!-- /BADGES -->
 
 <!-- DESCRIPTION/ -->
-Module that adds Atomic CSS library support to a Nuxt.js app. Generates atomic classes from code.
+Module that adds ACSS atomic CSS framework (aka Atomizer) support to a Nuxt.js app. Generates atomic classes from code.
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
@@ -82,14 +82,14 @@ That's already it, now you can add atomic classes to your components and they ar
 ```html
 <template>
   <div class="P(2rem) Bgc(#fafafa) C(#111) Bd Bdw(2px) Bdc(#ccc) Bdrs(.5rem) Ff(ss)">
-    Hey there, I'm styled with Atomic CSS! 🙌
+    Hey there, I'm styled with ACSS! 🙌
   </div>
 </template>
 ```
 
 Here is the result:
 
-<img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with Atomic CSS! 🙌'" src="https://github.com/dword-design/nuxt-atomizer/blob/master/doc/screenshot.png" width="400">
+<img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with ACSS! 🙌'" src="https://github.com/dword-design/nuxt-atomizer/blob/master/doc/screenshot.jpg" width="600">
 
 Also check out the demo at [CodeSandbox](https://codesandbox.io/s/demo-nuxt-atomizer-k8cky).
 
@@ -102,12 +102,12 @@ export default {
   modules: [
     ['nuxt-atomizer', {
       breakPoints: {
-          sm: '@media screen(min-width=750px)',
-          md: '@media(min-width=1000px)',
-          lg: '@media(min-width=1200px)'
+        sm: '@media screen(min-width=750px)',
+        md: '@media(min-width=1000px)',
+        lg: '@media(min-width=1200px)'
       },
       custom: {
-          primary: 'red',
+        primary: 'red',
       },
     }],
   ],
