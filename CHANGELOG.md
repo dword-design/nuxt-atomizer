@@ -1,3 +1,10 @@
+## [1.1.26](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.25...v1.1.26) (2021-07-18)
+
+
+### Bug Fixes
+
+* fix image url ([1096b8b](https://github.com/dword-design/nuxt-atomizer/commit/1096b8b39c50048edeccc95aed64848a68cf0a33))
+
 ## [1.1.25](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.24...v1.1.25) (2021-07-18)
 
 
