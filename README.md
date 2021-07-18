@@ -89,7 +89,7 @@ That's already it, now you can add atomic classes to your components and they ar
 
 Here is the result:
 
-<img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with Atomic CSS! 🙌'" src="doc/screenshot.png" width="400">
+<img alt="Screenshot of a box with rounded corners, displaying the text 'Hey there, I'm styled with Atomic CSS! 🙌'" src="https://github.com/dword-design/nuxt-atomizer/blob/master/doc/screenshot.png" width="400">
 
 ## Options
 
