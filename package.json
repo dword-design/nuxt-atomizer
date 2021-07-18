@@ -1,6 +1,14 @@
 {
   "name": "@dword-design/nuxt-atomizer",
   "version": "1.1.23",
+  "description": "Module that adds Atomic CSS library support to a Nuxt.js app. Generates atomic classes from code.",
+  "keywords": [
+    "atomic-css",
+    "nuxtjs",
+    "acss",
+    "atomizer",
+    "nuxt-module"
+  ],
   "repository": "dword-design/nuxt-atomizer",
   "funding": "https://github.com/sponsors/dword-design",
   "license": "MIT",
@@ -37,13 +45,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "description": "Module that adds Atomic CSS library support to a Nuxt.js app. Generates atomic classes from code.",
-  "keywords": [
-    "atomic-css",
-    "nuxtjs",
-    "acss",
-    "atomizer",
-    "nuxt-module"
-  ]
+  }
 }

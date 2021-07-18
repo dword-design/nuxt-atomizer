@@ -50,7 +50,7 @@
 <!-- /BADGES -->
 
 <!-- DESCRIPTION/ -->
-
+Module that adds Atomic CSS library support to a Nuxt.js app. Generates atomic classes from code.
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
