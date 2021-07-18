@@ -1,3 +1,11 @@
+## [1.1.30](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.29...v1.1.30) (2021-07-18)
+
+
+### Bug Fixes
+
+* adjust screenshot image ([6b79c73](https://github.com/dword-design/nuxt-atomizer/commit/6b79c73358289d7e147792301ae4e61f60fbc04e))
+* write GitHub metadata to package.json [description] ([d0724a1](https://github.com/dword-design/nuxt-atomizer/commit/d0724a125ccc520630a3ea9985984c653ca50d90))
+
 ## [1.1.29](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.28...v1.1.29) (2021-07-18)
 
 
