@@ -1168,12 +1168,12 @@
     "@babel/preset-env" "^7.6.3"
     "@babel/preset-typescript" "^7.13.0"
     "@dword-design/functions" "^4.0.0"
-    "@vue/babel-preset-jsx" dword-design/jsx#fork-babel-preset-jsx
+    "@vue/babel-preset-jsx" "github:dword-design/jsx#fork-babel-preset-jsx"
     babel-plugin-add-module-exports "^1.0.2"
     babel-plugin-macros "^3.0.1"
     babel-plugin-module-resolver "^4.0.0"
     babel-plugin-transform-imports "^2.0.0"
-    babel-plugin-wildcard dword-design/babel-plugin-wildcard#fork
+    babel-plugin-wildcard "github:dword-design/babel-plugin-wildcard#fork"
     depcheck-package-name "^2.0.0"
     find-up "^5.0.0"
     param-case "^3.0.3"
@@ -1197,9 +1197,9 @@
     std-env "^2.3.0"
 
 "@dword-design/base@^8.0.0":
-  version "8.5.2"
-  resolved "https://registry.yarnpkg.com/@dword-design/base/-/base-8.5.2.tgz#0b1e581e37c9e970e34fef48c0e3fc3fbaed06bf"
-  integrity sha512-qQqLOlEPAl3XZSXB9lHyvqf9VVZ0psRoxy0FSwqVFXfBRik309bentIcpjE7vejifQS69Ti3TQYawAQbgTcZ5g==
+  version "8.5.4"
+  resolved "https://registry.yarnpkg.com/@dword-design/base/-/base-8.5.4.tgz#43da1979e006d33ce0d322964db9174f03d977c6"
+  integrity sha512-4wcqx1cN8qS8pdTQAWyXe5fZwRLvRphhPcjUPcJq2BKJ71iA+cAY49ONHaT4WvZXjlAOgNBL6bB0rDzCgiSryg==
   dependencies:
     "@babel/core" "^7.6.4"
     "@babel/register" "^7.6.2"
@@ -1311,7 +1311,7 @@
   integrity sha512-gplaDX334DV6zuHg+Ne/OgVPO/xrZeV4HK9vErbVs9eDhfuvaDQnc8N0CtDl42aWf10m1kZdV8REgbFm70g9JQ==
   dependencies:
     delay "^5.0.0"
-    endent dword-design/endent#fork
+    endent "github:dword-design/endent#fork"
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
@@ -2387,6 +2387,7 @@
 
 "@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
+  uid a73cb9961541a60a66b1b99a69a32e00bc66d336
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
@@ -2426,6 +2427,7 @@
 
 "@vue/babel-sugar-inject-h@dword-design/jsx#fork-babel-sugar-inject-h":
   version "1.1.2"
+  uid cc36a2200c059120f37944615fb2ec0e22f8f3cc
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/cc36a2200c059120f37944615fb2ec0e22f8f3cc"
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
@@ -3220,6 +3222,7 @@ babel-plugin-transform-imports@^2.0.0:
 
 "babel-plugin-wildcard@github:dword-design/babel-plugin-wildcard#fork":
   version "6.0.0"
+  uid "691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   resolved "https://codeload.github.com/dword-design/babel-plugin-wildcard/tar.gz/691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   dependencies:
     rimraf "^2.6.2"
@@ -4725,6 +4728,7 @@ decode-uri-component@^0.2.0:
 
 dedent@0.7.0, dedent@dword-design/dedent#fork:
   version "0.7.0"
+  uid c8d46e5017d60504657c2d01b59082c0329a12a7
   resolved "https://codeload.github.com/dword-design/dedent/tar.gz/c8d46e5017d60504657c2d01b59082c0329a12a7"
   dependencies:
     babel-plugin-add-module-exports "^1.0.2"
@@ -5199,6 +5203,7 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
 
 "endent@github:dword-design/endent#fork":
   version "1.4.0"
+  uid be5433db67eaec07c6c9d00ba3bed2ed946dc664
   resolved "https://codeload.github.com/dword-design/endent/tar.gz/be5433db67eaec07c6c9d00ba3bed2ed946dc664"
   dependencies:
     dedent dword-design/dedent#fork
@@ -8632,9 +8637,9 @@ magic-string@^0.25.7:
     sourcemap-codec "^1.4.4"
 
 make-cli@^2.0.0:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-2.0.8.tgz#26a0be39356b28c50dfe7169a76f2557b3716fe4"
-  integrity sha512-so1KLLvD783Gfc+Ty0RuuuIhhg1j9SDVzZfCDiGk+DrjMQjCCgly5i3bKUCK6OObVDI8PsziKJNnbmGoGpN4wQ==
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-2.0.11.tgz#82dd1e634c4e97d2d7f72bec7fab6709fb6a2956"
+  integrity sha512-kf2QjyUwdvxD79harm393qXh1sVxF5T6EI+njTRHzUP+cVD+yJTjExrCt9Jr8s0ZzXqJwEHA26kcjrR4QWKMzw==
   dependencies:
     "@dword-design/functions" "^4.0.0"
     commander "^8.0.0"
@@ -13588,6 +13593,7 @@ wcwidth@^1.0.0:
 
 webpack-atomizer-loader@dword-design/webpack-atomizer-loader#fork:
   version "1.0.2"
+  uid d7953699c4dd6bae1d6d82bab4f0a819ff3608f2
   resolved "https://codeload.github.com/dword-design/webpack-atomizer-loader/tar.gz/d7953699c4dd6bae1d6d82bab4f0a819ff3608f2"
   dependencies:
     atomizer "3.9.1"
