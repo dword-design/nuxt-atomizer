@@ -1,3 +1,10 @@
+## [1.1.32](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.31...v1.1.32) (2021-07-20)
+
+
+### Bug Fixes
+
+* update config files ([25bfbd7](https://github.com/dword-design/nuxt-atomizer/commit/25bfbd750b5cef73c1d3f5e66e478750cdedbb5e))
+
 ## [1.1.31](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.30...v1.1.31) (2021-07-18)
 
 
