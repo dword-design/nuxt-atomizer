@@ -1,3 +1,10 @@
+## [1.1.33](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.32...v1.1.33) (2021-10-05)
+
+
+### Bug Fixes
+
+* update dependency axios to ^0.22.0 ([dca69fd](https://github.com/dword-design/nuxt-atomizer/commit/dca69fda0ed487c794a4ce7c3baf758b422918f1))
+
 ## [1.1.32](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.31...v1.1.32) (2021-07-20)
 
 
