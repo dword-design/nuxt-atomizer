@@ -3,7 +3,7 @@
 <!-- /TITLE -->
 
 <!-- BADGES/ -->
-  <p>
+<p>
     <a href="https://npmjs.org/package/nuxt-atomizer">
       <img
         src="https://img.shields.io/npm/v/nuxt-atomizer.svg"
