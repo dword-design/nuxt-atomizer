@@ -1,3 +1,10 @@
+## [1.1.37](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.36...v1.1.37) (2023-03-25)
+
+
+### Bug Fixes
+
+* update dependency fs-extra to v10.1.0 ([9c98c6f](https://github.com/dword-design/nuxt-atomizer/commit/9c98c6f4535b0c1b253f079d3e6a20dd564a6b31))
+
 ## [1.1.36](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.35...v1.1.36) (2023-03-24)
 
 
