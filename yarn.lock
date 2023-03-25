@@ -1370,12 +1370,19 @@
     execa "^5.0.0"
     make-cli "^2.0.0"
 
-"@dword-design/endent@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/endent/-/endent-1.0.1.tgz#847c775fb721142a5d3673b2e0ef383850e1040f"
-  integrity sha512-F8xRP8hTVd8JclhvmZskVN6QMLMge+kYCPOZ2Xsx7FJbs2dyD9J1cwDNsBAVujBfK2aKeznI/eqbHVK2XxCA2g==
+"@dword-design/dedent@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/dedent/-/dedent-0.7.0.tgz#bd8b674213339b77c81fd0697c1da1e50fcc1d7c"
+  integrity sha512-OFmAmzKiDUh9m7WRMYcoEOPI7b5tS5hdqQmtKDwF+ZssVJv8a+GHo9VOtFsmlw3h8Roh/9QzFWIsjSFZyQUMdg==
   dependencies:
-    dedent "github:dword-design/dedent#fork"
+    babel-plugin-add-module-exports "^1.0.2"
+
+"@dword-design/endent@^1.0.0":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/endent/-/endent-1.4.1.tgz#b1b38b87048ff43b17060e075c44896ebd414ecd"
+  integrity sha512-e2sCTzth5kyRdM0o+yEb5wBVzUdJL8Y6HblRGRV0Bif0knf1ZjRLhUjdCrqM+Muirb68X/xJzgdRDJVmLqgXGA==
+  dependencies:
+    "@dword-design/dedent" "^0.7.0"
     fast-json-parse "^1.0.3"
     objectorarray "^1.0.3"
 
@@ -1416,9 +1423,9 @@
     babel-plugin-module-resolver "^4.0.0"
 
 "@dword-design/functions@^4.0.0", "@dword-design/functions@^4.0.7":
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-4.0.7.tgz#678a0402c2890c6061a9605df0ac7153c06be469"
-  integrity sha512-Q225czTokHcXIUhe+yVlHuhnETdfKyJptNAfg2LnoB/HXUxQyb76+kwpBzwlldOQ7FJl+RDATj4zTRBh4puesA==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-4.1.0.tgz#98473461ddbd986bae884e591113653e30001369"
+  integrity sha512-rPNYH6mADaPMFRoROaHSvnFWExacY7t9oq45Jw++37mqsQay0IX4aHqfAsmWbJPU/wyx1LkqKvNI+mizzpjpYA==
   dependencies:
     "@dword-design/endent" "^1.0.0"
     delay "^5.0.0"
@@ -4897,7 +4904,7 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
-dedent@0.7.0, "dedent@github:dword-design/dedent#fork":
+dedent@0.7.0:
   version "0.7.0"
   uid c8d46e5017d60504657c2d01b59082c0329a12a7
   resolved "https://codeload.github.com/dword-design/dedent/tar.gz/c8d46e5017d60504657c2d01b59082c0329a12a7"
@@ -12990,9 +12997,9 @@ tiny-relative-date@*:
   integrity sha512-MOQHpzllWxDCHHaDno30hhLfbouoYlOI8YlMNtvKe1zXbjEVhbcEovQxvZrPvtiYW630GQDoMMarCnjfyfHA+A==
 
 tinycolor2@^1.4.1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
-  integrity sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.6.0.tgz#f98007460169b0263b97072c5ae92484ce02d09e"
+  integrity sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==
 
 tmatch@^2.0.1:
   version "2.0.1"
