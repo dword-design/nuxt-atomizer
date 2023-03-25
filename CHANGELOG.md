@@ -1,3 +1,10 @@
+## [1.1.38](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.37...v1.1.38) (2023-03-25)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v4.1.0 ([a1f166b](https://github.com/dword-design/nuxt-atomizer/commit/a1f166b93a207dde4568845b80a0b6d302fda6c2))
+
 ## [1.1.37](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.36...v1.1.37) (2023-03-25)
 
 
