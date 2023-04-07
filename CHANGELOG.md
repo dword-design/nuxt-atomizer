@@ -1,3 +1,10 @@
+## [1.1.39](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.38...v1.1.39) (2023-04-07)
+
+
+### Bug Fixes
+
+* update dependency serve-static to v1.15.0 ([a9f4f47](https://github.com/dword-design/nuxt-atomizer/commit/a9f4f47ad9da39b67df1571a33e1533fddcca0b3))
+
 ## [1.1.38](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.37...v1.1.38) (2023-03-25)
 
 
