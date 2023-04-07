@@ -1,3 +1,10 @@
+## [1.1.40](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.39...v1.1.40) (2023-04-07)
+
+
+### Bug Fixes
+
+* update dependency with-local-tmp-dir to v4.1.0 ([9326f33](https://github.com/dword-design/nuxt-atomizer/commit/9326f33e0a62ccac11143bdfa4d9480e4876d893))
+
 ## [1.1.39](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.38...v1.1.39) (2023-04-07)
 
 
