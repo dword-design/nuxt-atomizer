@@ -6,33 +6,35 @@ import outputFiles from 'output-files'
 import postcss from 'postcss'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
+import self from './index.js'
+
 export default {
   css: () =>
     withLocalTmpDir(async () => {
       await outputFile(
         'pages/index.js',
         endent`
-      export default {
-        render: h => <div class="C(red)">Hello world</div>,
-      }
-    `
+          export default {
+            render: h => <div class="C(red)">Hello world</div>,
+          }
+        `,
       )
 
       const nuxt = new Nuxt({
         createRequire: 'native',
         dev: false,
-        modules: [require.resolve('.')],
+        modules: [self],
       })
       await new Builder(nuxt).build()
       try {
         await nuxt.listen()
         expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"'
+          '"/acss.css"',
         )
         expect(
           axios.get('http://localhost:3000/acss.css')
             |> await
-            |> property('data')
+            |> property('data'),
         ).toEqual('.C\\(red\\){color:red}')
       } finally {
         await nuxt.close()
@@ -57,18 +59,18 @@ export default {
 
       const nuxt = new Nuxt({
         dev: false,
-        modules: [require.resolve('.')],
+        modules: [self],
       })
       await new Builder(nuxt).build()
       try {
         await nuxt.listen()
         expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"'
+          '"/acss.css"',
         )
         expect(
           axios.get('http://localhost:3000/acss.css')
             |> await
-            |> property('data')
+            |> property('data'),
         ).toEqual('.C\\(green\\){color:green}.C\\(red\\){color:red}')
       } finally {
         await nuxt.close()
@@ -79,10 +81,10 @@ export default {
       await outputFile(
         'pages/index.js',
         endent`
-      export default {
-        render: () => <div class="C(red) Foo">Hello world</div>,
-      }
-    `
+          export default {
+            render: () => <div class="C(red) Foo">Hello world</div>,
+          }
+        `,
       )
 
       const nuxt = new Nuxt({
@@ -97,7 +99,7 @@ export default {
                       if (decl.prop === 'color') {
                         decl.prop = 'background'
                       }
-                    })
+                    }),
                 ),
               ],
             },
@@ -117,7 +119,7 @@ export default {
           ],
         },
         dev: false,
-        modules: [require.resolve('.')],
+        modules: [self],
       })
       await new Builder(nuxt).build()
       try {
@@ -125,7 +127,7 @@ export default {
         expect(
           axios.get('http://localhost:3000/acss.css')
             |> await
-            |> property('data')
+            |> property('data'),
         ).toEqual('.C\\(red\\){background:red}.Foo{font-weight:700}')
       } finally {
         await nuxt.close()
@@ -136,10 +138,10 @@ export default {
       await outputFile(
         'pages/index.js',
         endent`
-      export default {
-        render: h => <div class="C(foo)">Hello world</div>,
-      }
-    `
+          export default {
+            render: h => <div class="C(foo)">Hello world</div>,
+          }
+        `,
       )
 
       const nuxt = new Nuxt({
@@ -147,18 +149,18 @@ export default {
           custom: { foo: 'red' },
         },
         dev: false,
-        modules: [require.resolve('.')],
+        modules: [self],
       })
       await new Builder(nuxt).build()
       try {
         await nuxt.listen()
         expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"'
+          '"/acss.css"',
         )
         expect(
           axios.get('http://localhost:3000/acss.css')
             |> await
-            |> property('data')
+            |> property('data'),
         ).toEqual('.C\\(foo\\){color:red}')
       } finally {
         await nuxt.close()
@@ -169,26 +171,26 @@ export default {
       await outputFile(
         'pages/index.js',
         endent`
-      export default {
-        render: h => <div class="C(foo)">Hello world</div>,
-      }
-    `
+          export default {
+            render: h => <div class="C(foo)">Hello world</div>,
+          }
+        `,
       )
 
       const nuxt = new Nuxt({
         dev: false,
-        modules: [[require.resolve('.'), { custom: { foo: 'red' } }]],
+        modules: [[self, { custom: { foo: 'red' } }]],
       })
       await new Builder(nuxt).build()
       try {
         await nuxt.listen()
         expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"'
+          '"/acss.css"',
         )
         expect(
           axios.get('http://localhost:3000/acss.css')
             |> await
-            |> property('data')
+            |> property('data'),
         ).toEqual('.C\\(foo\\){color:red}')
       } finally {
         await nuxt.close()
@@ -202,23 +204,23 @@ export default {
           <template>
             <div class="C(red)">Hello world</div>
           </template>
-        `
+        `,
       )
 
       const nuxt = new Nuxt({
         dev: false,
-        modules: [require.resolve('.')],
+        modules: [self],
       })
       await new Builder(nuxt).build()
       try {
         await nuxt.listen()
         expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"'
+          '"/acss.css"',
         )
         expect(
           axios.get('http://localhost:3000/acss.css')
             |> await
-            |> property('data')
+            |> property('data'),
         ).toEqual('.C\\(red\\){color:red}')
       } finally {
         await nuxt.close()

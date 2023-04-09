@@ -9,7 +9,7 @@ export default function (moduleOptions) {
   const cssDest = P.join(this.options.buildDir, 'acss.css')
   this.extendBuild(config => {
     const rules = config.module.rules.filter(rule =>
-      ['.js', '.vue'].some(extension => rule.test.test(extension))
+      ['.js', '.vue'].some(extension => rule.test.test(extension)),
     )
     for (const rule of rules) {
       if (!rule.use) {
@@ -29,7 +29,7 @@ export default function (moduleOptions) {
           },
           minimize: true,
           postcssPlugins: compact(
-            options.plugins.flatMap(plugin => plugin.postcssPlugins)
+            options.plugins.flatMap(plugin => plugin.postcssPlugins),
           ),
         },
       })
