@@ -33,7 +33,7 @@
     "webpack-atomizer-loader": "dword-design/webpack-atomizer-loader#fork"
   },
   "devDependencies": {
-    "@dword-design/base": "^8.0.0",
+    "@dword-design/base": "^10.0.0",
     "axios": "^0.22.0",
     "fs-extra": "^10.0.0",
     "nuxt": "~2.15.0",
