@@ -37,24 +37,7 @@ export default function (moduleOptions) {
       });
     }
   });
-
-  /* const { configs } = require(options.configPath)
-  if (this.options.dev) {
-    this.options.serverMiddleware.push(
-      {
-        path: '/register-acss-browser-config.js',
-        handler: (req, res) => res.end(`window.acssConfig = ${stringifyObject(configs, { indent: '  ' })};`),
-      },
-      {
-        path: '/acss-browser',
-        handler: serveStatic(require.resolve('acss-browser/acss-browser.min.js')),
-      },
-    )
-    this.options.head.script.push(
-      { src: '/register-acss-browser-config.js' },
-      { src: '/acss-browser' },
-    )
-  } */
+  
   this.options.serverMiddleware.push({
     handler: serveStatic(cssDest),
     path: '/acss.css',
