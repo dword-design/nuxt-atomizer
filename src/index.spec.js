@@ -1,229 +1,209 @@
-import { endent, property } from '@dword-design/functions'
-import axios from 'axios'
-import { outputFile } from 'fs-extra'
-import { Builder, Nuxt } from 'nuxt'
-import outputFiles from 'output-files'
-import postcss from 'postcss'
-import withLocalTmpDir from 'with-local-tmp-dir'
-
-import self from './index.js'
+import { endent } from '@dword-design/functions';
+import packageName from 'depcheck-package-name';
+import { execaCommand } from 'execa';
+import fs from 'fs-extra';
+import nuxtDevReady from 'nuxt-dev-ready';
+import { ofetch } from 'ofetch';
+import outputFiles from 'output-files';
+import P from 'path';
+import kill from 'tree-kill-promise';
+import withLocalTmpDir from 'with-local-tmp-dir';
 
 export default {
-  css: () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'pages/index.js',
-        endent`
-          export default {
-            render: h => <div class="C(red)">Hello world</div>,
-          }
-        `,
-      )
+  async afterEach() {
+    await this.resetWithLocalTmpDir();
+  },
+  before: async () => {
+    await fs.outputFile(
+      P.join('node_modules', '.cache', 'nuxt2', 'package.json'),
+      JSON.stringify({}),
+    );
 
-      const nuxt = new Nuxt({
-        createRequire: 'native',
-        dev: false,
-        modules: [self],
-      })
-      await new Builder(nuxt).build()
-      try {
-        await nuxt.listen()
-        expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"',
-        )
-        expect(
-          axios.get('http://localhost:3000/acss.css')
-            |> await
-            |> property('data'),
-        ).toEqual('.C\\(red\\){color:red}')
-      } finally {
-        await nuxt.close()
-      }
-    }),
-  'multiple files': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        pages: {
-          'index.vue': endent`
-            <template>
-              <div class="C(red)">Hello world</div>
-            </template>
-          `,
-          'other.vue': endent`
-            <template>
-              <div class="C(green)">Hello world</div>
-            </template>
-          `,
-        },
-      })
+    await execaCommand('yarn add nuxt@^2', {
+      cwd: P.join('node_modules', '.cache', 'nuxt2'),
+      stdio: 'inherit',
+    });
+  },
+  async beforeEach() {
+    this.resetWithLocalTmpDir = await withLocalTmpDir();
+  },
+  css: async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        export default {
+          modules: ['~/../src/index.js'],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="C(red)">Hello world</div>
+        </template>
+      `,
+    });
 
-      const nuxt = new Nuxt({
-        dev: false,
-        modules: [self],
-      })
-      await new Builder(nuxt).build()
-      try {
-        await nuxt.listen()
-        expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"',
-        )
-        expect(
-          axios.get('http://localhost:3000/acss.css')
-            |> await
-            |> property('data'),
-        ).toEqual('.C\\(green\\){color:green}.C\\(red\\){color:red}')
-      } finally {
-        await nuxt.close()
-      }
-    }),
-  plugin: () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'pages/index.js',
-        endent`
-          export default {
-            render: () => <div class="C(red) Foo">Hello world</div>,
-          }
-        `,
-      )
+    const nuxt = execaCommand('nuxt dev');
 
-      const nuxt = new Nuxt({
-        atomizer: {
-          plugins: [
-            {
-              postcssPlugins: [
-                postcss.plugin(
-                  'test',
-                  () => root =>
-                    root.walkDecls(decl => {
-                      if (decl.prop === 'color') {
-                        decl.prop = 'background'
-                      }
-                    }),
-                ),
-              ],
-            },
-            {
-              rules: [
-                {
-                  matcher: 'Foo',
-                  name: 'Foo',
-                  noParams: true,
-                  styles: {
-                    'font-weight': 'bold',
-                  },
-                  type: 'helper',
-                },
-              ],
-            },
-          ],
-        },
-        dev: false,
-        modules: [self],
-      })
-      await new Builder(nuxt).build()
-      try {
-        await nuxt.listen()
-        expect(
-          axios.get('http://localhost:3000/acss.css')
-            |> await
-            |> property('data'),
-        ).toEqual('.C\\(red\\){background:red}.Foo{font-weight:700}')
-      } finally {
-        await nuxt.close()
-      }
-    }),
-  'top-level option': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'pages/index.js',
-        endent`
-          export default {
-            render: h => <div class="C(foo)">Hello world</div>,
-          }
-        `,
-      )
+    try {
+      await nuxtDevReady();
+      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
 
-      const nuxt = new Nuxt({
-        atomizer: {
-          custom: { foo: 'red' },
-        },
-        dev: false,
-        modules: [self],
-      })
-      await new Builder(nuxt).build()
-      try {
-        await nuxt.listen()
-        expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"',
-        )
-        expect(
-          axios.get('http://localhost:3000/acss.css')
-            |> await
-            |> property('data'),
-        ).toEqual('.C\\(foo\\){color:red}')
-      } finally {
-        await nuxt.close()
-      }
-    }),
-  variables: () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'pages/index.js',
-        endent`
-          export default {
-            render: h => <div class="C(foo)">Hello world</div>,
-          }
-        `,
-      )
-
-      const nuxt = new Nuxt({
-        dev: false,
-        modules: [[self, { custom: { foo: 'red' } }]],
-      })
-      await new Builder(nuxt).build()
-      try {
-        await nuxt.listen()
-        expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"',
-        )
-        expect(
-          axios.get('http://localhost:3000/acss.css')
-            |> await
-            |> property('data'),
-        ).toEqual('.C\\(foo\\){color:red}')
-      } finally {
-        await nuxt.close()
-      }
-    }),
-  'vue file': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'pages/index.vue',
-        endent`
+      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
+        '.C\\(red\\){color:red}',
+      );
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+  'multiple files': async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        export default {
+          modules: ['~/../src/index.js'],
+        };
+      `,
+      pages: {
+        'index.vue': endent`
           <template>
             <div class="C(red)">Hello world</div>
           </template>
         `,
-      )
+        'other.vue': endent`
+          <template>
+            <div class="C(green)">Hello world</div>
+          </template>
+        `,
+      },
+    });
 
-      const nuxt = new Nuxt({
-        dev: false,
-        modules: [self],
-      })
-      await new Builder(nuxt).build()
-      try {
-        await nuxt.listen()
-        expect(nuxt.renderRoute('/') |> await |> property('html')).toMatch(
-          '"/acss.css"',
-        )
-        expect(
-          axios.get('http://localhost:3000/acss.css')
-            |> await
-            |> property('data'),
-        ).toEqual('.C\\(red\\){color:red}')
-      } finally {
-        await nuxt.close()
-      }
-    }),
-}
+    const nuxt = execaCommand('nuxt dev');
+
+    try {
+      await nuxtDevReady();
+      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
+
+      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
+        '.C\\(green\\){color:green}.C\\(red\\){color:red}',
+      );
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+  plugin: async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        import postcss from '${packageName`postcss`}'
+
+        export default {
+          atomizer: {
+            plugins: [
+              {
+                postcssPlugins: [
+                  postcss.plugin(
+                    'test',
+                    () => root =>
+                      root.walkDecls(decl => {
+                        if (decl.prop === 'color') {
+                          decl.prop = 'background'
+                        }
+                      }),
+                  ),
+                ],
+              },
+              {
+                rules: [
+                  {
+                    matcher: 'Foo',
+                    name: 'Foo',
+                    noParams: true,
+                    styles: {
+                      'font-weight': 'bold',
+                    },
+                    type: 'helper',
+                  },
+                ],
+              },
+            ],
+          },
+          modules: ['~/../src/index.js'],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="C(red) Foo">Hello world</div>
+        </template>
+      `,
+    });
+
+    const nuxt = execaCommand('nuxt dev');
+
+    try {
+      await nuxtDevReady();
+
+      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
+        '.C\\(red\\){background:red}.Foo{font-weight:700}',
+      );
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+  'top-level option': async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        export default {
+          atomizer: {
+            custom: { foo: 'red' },
+          },
+          modules: ['~/../src/index.js'],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="C(foo)">Hello world</div>
+        </template>
+      `,
+    });
+
+    const nuxt = execaCommand('nuxt dev');
+
+    try {
+      await nuxtDevReady();
+      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
+
+      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
+        '.C\\(foo\\){color:red}',
+      );
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+  variables: async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        export default {
+          atomizer: {
+            custom: { foo: 'red' },
+          },
+          modules: [['~/../src/index.js', { custom: { foo: 'red' } }]],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="C(foo)">Hello world</div>
+        </template>
+      `,
+    });
+
+    const nuxt = execaCommand('nuxt dev');
+
+    try {
+      await nuxtDevReady();
+      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
+
+      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
+        '.C\\(foo\\){color:red}',
+      );
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+};

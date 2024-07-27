@@ -30,22 +30,25 @@
     "test": "base test"
   },
   "dependencies": {
-    "@dword-design/functions": "^4.0.0",
-    "depcheck-package-name": "^3.0.0",
+    "@dword-design/functions": "^6.0.0",
+    "depcheck-package-name": "^3.0.1",
     "serve-static": "^1.14.1",
     "webpack-atomizer-loader": "dword-design/webpack-atomizer-loader#fork"
   },
   "devDependencies": {
-    "@dword-design/base": "^9.5.7",
-    "axios": "^1.3.5",
-    "fs-extra": "^10.0.0",
+    "@dword-design/base": "^11.1.1",
+    "execa": "^9.3.0",
+    "fs-extra": "^11.2.0",
     "nuxt": "^2",
+    "nuxt-dev-ready": "^3.0.0",
+    "ofetch": "^1.3.4",
     "output-files": "^2.0.7",
     "postcss": "^8.0.0",
-    "with-local-tmp-dir": "^4.0.0"
+    "tree-kill-promise": "^3.0.14",
+    "with-local-tmp-dir": "^5.1.1"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "publishConfig": {
     "access": "public"

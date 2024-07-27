@@ -1,22 +1,24 @@
-import { compact } from '@dword-design/functions'
-import packageName from 'depcheck-package-name'
-import P from 'path'
-import serveStatic from 'serve-static'
+import { compact } from '@dword-design/functions';
+import packageName from 'depcheck-package-name';
+import P from 'path';
+import serveStatic from 'serve-static';
 
 export default function (moduleOptions) {
-  const options = { plugins: [], ...this.options.atomizer, ...moduleOptions }
+  const options = { plugins: [], ...this.options.atomizer, ...moduleOptions };
+  const cssDest = P.join(this.options.buildDir, 'acss.css');
 
-  const cssDest = P.join(this.options.buildDir, 'acss.css')
   this.extendBuild(config => {
     const rules = config.module.rules.filter(rule =>
       ['.js', '.vue'].some(extension => rule.test.test(extension)),
-    )
+    );
+
     for (const rule of rules) {
       if (!rule.use) {
-        rule.use = [{ loader: rule.loader, options: rule.options }]
-        delete rule.loader
-        delete rule.options
+        rule.use = [{ loader: rule.loader, options: rule.options }];
+        delete rule.loader;
+        delete rule.options;
       }
+
       rule.use.unshift({
         loader: packageName`webpack-atomizer-loader`,
         query: {
@@ -32,9 +34,10 @@ export default function (moduleOptions) {
             options.plugins.flatMap(plugin => plugin.postcssPlugins),
           ),
         },
-      })
+      });
     }
-  })
+  });
+
   /* const { configs } = require(options.configPath)
   if (this.options.dev) {
     this.options.serverMiddleware.push(
@@ -55,6 +58,7 @@ export default function (moduleOptions) {
   this.options.serverMiddleware.push({
     handler: serveStatic(cssDest),
     path: '/acss.css',
-  })
-  this.options.head.link.push({ href: '/acss.css', rel: 'stylesheet' })
+  });
+
+  this.options.head.link.push({ href: '/acss.css', rel: 'stylesheet' });
 }
