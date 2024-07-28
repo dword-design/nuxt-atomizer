@@ -11,6 +11,7 @@ import jiti from 'jiti';
 import P from 'path';
 import serveStatic from 'serve-static';
 
+const FILENAME = 'acss.css';
 const resolver = createResolver(import.meta.url);
 
 export default async function (moduleOptions, nuxt) {
@@ -31,8 +32,7 @@ export default async function (moduleOptions, nuxt) {
     moduleOptions,
   ]);
 
-  const cssPath = P.join(nuxt.options.buildDir, 'acss.css');
-  nuxt.options.app.head.link.push({ href: '/acss.css', rel: 'stylesheet' });
+  const cssPath = P.join(nuxt.options.buildDir, FILENAME);
   let isNuxt3 = true;
 
   try {
@@ -42,11 +42,16 @@ export default async function (moduleOptions, nuxt) {
   }
 
   if (isNuxt3) {
+    nuxt.options.app.head.link.push({
+      href: `/${FILENAME}`,
+      rel: 'stylesheet',
+    });
+
     nuxt.options.runtimeConfig.atomizer = { cssPath };
 
     addServerHandler({
       handler: resolver.resolve('./server-handler.get.js'),
-      route: '/acss.css',
+      route: `/${FILENAME}`,
     });
 
     if (nuxt.options.vite.plugins === undefined) {
@@ -57,6 +62,8 @@ export default async function (moduleOptions, nuxt) {
       atomizer({ config: options, outfile: cssPath }),
     );
   } else {
+    nuxt.options.head.link.push({ href: `/${FILENAME}`, rel: 'stylesheet' });
+
     nuxt.extendBuild(config => {
       const rules = config.module.rules.filter(rule =>
         ['.js', '.vue'].some(extension => rule.test.test(extension)),
@@ -84,7 +91,7 @@ export default async function (moduleOptions, nuxt) {
 
     nuxt.options.serverMiddleware.push({
       handler: serveStatic(cssPath),
-      path: '/acss.css',
+      path: `/${FILENAME}`,
     });
   }
 }

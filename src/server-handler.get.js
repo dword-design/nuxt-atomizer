@@ -1,7 +1,11 @@
 import CleanCSS from 'clean-css';
 import fs from 'fs-extra';
 
-import { defineEventHandler, useRuntimeConfig } from '#imports';
+import {
+  defineEventHandler,
+  setResponseHeader,
+  useRuntimeConfig,
+} from '#imports';
 
 const {
   atomizer: { cssPath },
@@ -9,8 +13,9 @@ const {
 
 const cleanCss = new CleanCSS();
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async event => {
   let code = await fs.readFile(cssPath, 'utf8');
   code = cleanCss.minify(code).styles;
+  setResponseHeader(event, 'Content-Type', 'text/css');
   return code;
 });
