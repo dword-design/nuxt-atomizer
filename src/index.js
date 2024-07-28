@@ -1,47 +1,90 @@
-import { compact } from '@dword-design/functions';
+import {
+  addServerHandler,
+  createResolver,
+  isNuxt3 as isNuxt3Try,
+} from '@nuxt/kit';
+import utils from 'atomizer/src/lib/utils.js';
+import { vite as atomizer } from 'atomizer-plugins';
 import packageName from 'depcheck-package-name';
+import fs from 'fs-extra';
+import jiti from 'jiti';
 import P from 'path';
 import serveStatic from 'serve-static';
 
-export default function (moduleOptions) {
-  const options = { plugins: [], ...this.options.atomizer, ...moduleOptions };
-  const cssDest = P.join(this.options.buildDir, 'acss.css');
+const resolver = createResolver(import.meta.url);
 
-  this.extendBuild(config => {
-    const rules = config.module.rules.filter(rule =>
-      ['.js', '.vue'].some(extension => rule.test.test(extension)),
-    );
+export default async function (moduleOptions, nuxt) {
+  nuxt = nuxt || this;
 
-    for (const rule of rules) {
-      if (!rule.use) {
-        rule.use = [{ loader: rule.loader, options: rule.options }];
-        delete rule.loader;
-        delete rule.options;
-      }
+  const jitiInstance = jiti(process.cwd(), {
+    esmResolve: true,
+    interopDefault: true,
+  });
 
-      rule.use.unshift({
-        loader: packageName`webpack-atomizer-loader`,
-        query: {
-          config: {
-            configs: options,
-            cssDest: P.relative(process.cwd(), cssDest),
-            options: {
-              rules: compact(options.plugins.flatMap(plugin => plugin.rules)),
-            },
-          },
-          minimize: true,
-          postcssPlugins: compact(
-            options.plugins.flatMap(plugin => plugin.postcssPlugins),
-          ),
-        },
-      });
+  const fileConfig = (await fs.exists('atomizer.config.js'))
+    ? jitiInstance('./atomizer.config.js')
+    : {};
+
+  const options = utils.mergeConfigs([
+    fileConfig,
+    nuxt.options.atomizer,
+    moduleOptions,
+  ]);
+
+  const cssPath = P.join(nuxt.options.buildDir, 'acss.css');
+  nuxt.options.app.head.link.push({ href: '/acss.css', rel: 'stylesheet' });
+  let isNuxt3 = true;
+
+  try {
+    isNuxt3 = isNuxt3Try();
+  } catch {
+    isNuxt3 = false;
+  }
+
+  if (isNuxt3) {
+    nuxt.options.runtimeConfig.atomizer = { cssPath };
+
+    addServerHandler({
+      handler: resolver.resolve('./server-handler.get.js'),
+      route: '/acss.css',
+    });
+
+    if (nuxt.options.vite.plugins === undefined) {
+      nuxt.options.vite.plugins = [];
     }
-  });
-  
-  this.options.serverMiddleware.push({
-    handler: serveStatic(cssDest),
-    path: '/acss.css',
-  });
 
-  this.options.head.link.push({ href: '/acss.css', rel: 'stylesheet' });
+    nuxt.options.vite.plugins.push(
+      atomizer({ config: options, outfile: cssPath }),
+    );
+  } else {
+    nuxt.extendBuild(config => {
+      const rules = config.module.rules.filter(rule =>
+        ['.js', '.vue'].some(extension => rule.test.test(extension)),
+      );
+
+      for (const rule of rules) {
+        if (!rule.use) {
+          rule.use = [{ loader: rule.loader, options: rule.options }];
+          delete rule.loader;
+          delete rule.options;
+        }
+
+        rule.use.unshift({
+          loader: packageName`webpack-atomizer-loader`,
+          query: {
+            config: {
+              configs: options,
+              cssDest: P.relative(process.cwd(), cssPath),
+            },
+            minimize: true,
+          },
+        });
+      }
+    });
+
+    nuxt.options.serverMiddleware.push({
+      handler: serveStatic(cssPath),
+      path: '/acss.css',
+    });
+  }
 }

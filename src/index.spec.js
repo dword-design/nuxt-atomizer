@@ -1,5 +1,5 @@
-import { endent } from '@dword-design/functions';
-import packageName from 'depcheck-package-name';
+import { delay, endent } from '@dword-design/functions';
+import puppeteer from '@dword-design/puppeteer';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import nuxtDevReady from 'nuxt-dev-ready';
@@ -9,9 +9,46 @@ import P from 'path';
 import kill from 'tree-kill-promise';
 import withLocalTmpDir from 'with-local-tmp-dir';
 
+const ATOMIZER_BUILD_DELAY = 1000;
+
 export default {
   async afterEach() {
+    await this.page.close();
+    await this.browser.close();
     await this.resetWithLocalTmpDir();
+  },
+  'atomizer.config.js': async () => {
+    await outputFiles({
+      'atomizer.config.js': endent`
+        module.exports = {
+          custom: { foo: 'red' },
+        };
+      `,
+      'nuxt.config.js': endent`
+        export default {
+          modules: ['../src/index.js'],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="elem C(foo)">Hello world</div>
+        </template>
+      `,
+    });
+
+    const nuxt = execaCommand('nuxt dev');
+
+    try {
+      await nuxtDevReady();
+      await delay(ATOMIZER_BUILD_DELAY);
+      await this.page.goto('http://localhost:3000');
+
+      expect(
+        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+      ).toEqual('rgb(255, 0, 0)');
+    } finally {
+      await kill(nuxt.pid);
+    }
   },
   before: async () => {
     await fs.outputFile(
@@ -26,17 +63,19 @@ export default {
   },
   async beforeEach() {
     this.resetWithLocalTmpDir = await withLocalTmpDir();
+    this.browser = await puppeteer.launch();
+    this.page = await this.browser.newPage();
   },
   css: async () => {
     await outputFiles({
       'nuxt.config.js': endent`
         export default {
-          modules: ['~/../src/index.js'],
+          modules: ['../src/index.js'],
         };
       `,
       'pages/index.vue': endent`
         <template>
-          <div class="C(red)">Hello world</div>
+          <div class="elem C(red)">Hello world</div>
         </template>
       `,
     });
@@ -45,11 +84,43 @@ export default {
 
     try {
       await nuxtDevReady();
-      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
+      await delay(ATOMIZER_BUILD_DELAY);
+      await this.page.goto('http://localhost:3000');
+      expect(
+        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+      ).toEqual('rgb(255, 0, 0)');
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+  nuxt2: async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        export default {
+          modules: ['~/../src/index.js'],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="elem C(red)">Hello world</div>
+        </template>
+      `,
+    });
 
-      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
-        '.C\\(red\\){color:red}',
-      );
+    await fs.symlink(
+      P.join('..', 'node_modules', '.cache', 'nuxt2', 'node_modules'),
+      'node_modules',
+    );
+
+    const nuxt = execa(P.join('node_modules', '.bin', 'nuxt'), ['dev']);
+
+    try {
+      await nuxtDevReady();
+      await delay(ATOMIZER_BUILD_DELAY);
+      await this.page.goto('http://localhost:3000');
+      expect(
+        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+      ).toEqual('rgb(255, 0, 0)');
     } finally {
       await kill(nuxt.pid);
     }
@@ -58,18 +129,18 @@ export default {
     await outputFiles({
       'nuxt.config.js': endent`
         export default {
-          modules: ['~/../src/index.js'],
+          modules: ['../src/index.js'],
         };
       `,
       pages: {
         'index.vue': endent`
           <template>
-            <div class="C(red)">Hello world</div>
+            <div class="elem C(red)">Hello world</div>
           </template>
         `,
         'other.vue': endent`
           <template>
-            <div class="C(green)">Hello world</div>
+            <div class="elem C(green)">Hello world</div>
           </template>
         `,
       },
@@ -79,99 +150,15 @@ export default {
 
     try {
       await nuxtDevReady();
-      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
-
-      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
-        '.C\\(green\\){color:green}.C\\(red\\){color:red}',
-      );
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  plugin: async () => {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        import postcss from '${packageName`postcss`}'
-
-        export default {
-          atomizer: {
-            plugins: [
-              {
-                postcssPlugins: [
-                  postcss.plugin(
-                    'test',
-                    () => root =>
-                      root.walkDecls(decl => {
-                        if (decl.prop === 'color') {
-                          decl.prop = 'background'
-                        }
-                      }),
-                  ),
-                ],
-              },
-              {
-                rules: [
-                  {
-                    matcher: 'Foo',
-                    name: 'Foo',
-                    noParams: true,
-                    styles: {
-                      'font-weight': 'bold',
-                    },
-                    type: 'helper',
-                  },
-                ],
-              },
-            ],
-          },
-          modules: ['~/../src/index.js'],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="C(red) Foo">Hello world</div>
-        </template>
-      `,
-    });
-
-    const nuxt = execaCommand('nuxt dev');
-
-    try {
-      await nuxtDevReady();
-
-      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
-        '.C\\(red\\){background:red}.Foo{font-weight:700}',
-      );
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  'top-level option': async () => {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          atomizer: {
-            custom: { foo: 'red' },
-          },
-          modules: ['~/../src/index.js'],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="C(foo)">Hello world</div>
-        </template>
-      `,
-    });
-
-    const nuxt = execaCommand('nuxt dev');
-
-    try {
-      await nuxtDevReady();
-      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
-
-      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
-        '.C\\(foo\\){color:red}',
-      );
+      await delay(ATOMIZER_BUILD_DELAY);
+      await this.page.goto('http://localhost:3000');
+      expect(
+        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+      ).toEqual('rgb(255, 0, 0)');
+      await this.page.goto('http://localhost:3000/other');
+      expect(
+        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+      ).toEqual('rgb(0, 255, 0)');
     } finally {
       await kill(nuxt.pid);
     }
@@ -183,7 +170,66 @@ export default {
           atomizer: {
             custom: { foo: 'red' },
           },
-          modules: [['~/../src/index.js', { custom: { foo: 'red' } }]],
+          modules: [['../src/index.js', { custom: { foo: 'red' } }]],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="elem C(foo)">Hello world</div>
+        </template>
+      `,
+    });
+
+    const nuxt = execaCommand('nuxt dev');
+
+    try {
+      await nuxtDevReady();
+      await delay(ATOMIZER_BUILD_DELAY);
+      await this.page.goto('http://localhost:3000');
+      expect(
+        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+      ).toEqual('rgb(255, 0, 0)');
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+  options: async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        export default {
+          atomizer: {
+            custom: { foo: 'red' },
+          },
+          modules: [['../src/index.js', { custom: { foo: 'red' } }]],
+        };
+      `,
+      'pages/index.vue': endent`
+        <template>
+          <div class="elem C(foo)">Hello world</div>
+        </template>
+      `,
+    });
+
+    const nuxt = execaCommand('nuxt dev');
+
+    try {
+      await nuxtDevReady();
+      await delay(ATOMIZER_BUILD_DELAY);
+      expect(await ofetch('http://localhost:3000/acss.css')).toMatch(
+        '.C\\(foo\\){color:red}',
+      );
+    } finally {
+      await kill(nuxt.pid);
+    }
+  },
+  'top-level options': async () => {
+    await outputFiles({
+      'nuxt.config.js': endent`
+        export default {
+          atomizer: {
+            custom: { foo: 'red' },
+          },
+          modules: ['../src/index.js'],
         };
       `,
       'pages/index.vue': endent`
@@ -197,9 +243,8 @@ export default {
 
     try {
       await nuxtDevReady();
-      expect(await ofetch('http://localhost:3000')).toMatch('"/acss.css"');
-
-      expect(await ofetch('http://localhost:3000/acss.css')).toEqual(
+      await delay(ATOMIZER_BUILD_DELAY);
+      expect(await ofetch('http://localhost:3000/acss.css')).toMatch(
         '.C\\(foo\\){color:red}',
       );
     } finally {
