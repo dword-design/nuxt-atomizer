@@ -2,6 +2,7 @@ import { delay, endent } from '@dword-design/functions';
 import puppeteer from '@dword-design/puppeteer';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
+import inFolder from 'in-folder';
 import nuxtDevReady from 'nuxt-dev-ready';
 import { ofetch } from 'ofetch';
 import outputFiles from 'output-files';
@@ -53,12 +54,12 @@ export default {
   before: async () => {
     await fs.outputFile(
       P.join('node_modules', '.cache', 'nuxt2', 'package.json'),
-      JSON.stringify({}),
+      JSON.stringify({ dependencies: { nuxt: '^2' } }),
     );
 
-    await execaCommand('yarn add nuxt@^2', {
-      cwd: P.join('node_modules', '.cache', 'nuxt2'),
-      stdio: 'inherit',
+    await inFolder(P.join('node_modules', '.cache', 'nuxt2'), async () => {
+      await execaCommand('corepack use pnpm');
+      await execaCommand('pnpm install', { stdio: 'inherit' });
     });
   },
   async beforeEach() {
