@@ -95,7 +95,7 @@ Also check out the demo at [CodeSandbox](https://codesandbox.io/s/demo-nuxt-atom
 
 ## Options
 
-You can customize Atomic CSS by adding options either to the module or top-level options. It takes the same options as [webpack-atomizer-loader](https://github.com/acss-io/webpack-atomizer-loader#atomic-css-configuration).
+You can customize Atomic CSS by adding options either to the module, the top-level `atomizer` options object or an `atomizer.config.js` file. The merge order is the following: `module` > top-level > `atomizer.config.js`.
 
 ```js
 export default {
@@ -168,5 +168,5 @@ Thanks a lot for your support! ❤️
 
 ## License
 
-[MIT License](https://opensource.org/licenses/MIT) © [Sebastian Landwehr](https://sebastianlandwehr.com)
+[MIT License](https://opensource.org/license/mit/) © [Sebastian Landwehr](https://sebastianlandwehr.com)
 <!-- /LICENSE -->
