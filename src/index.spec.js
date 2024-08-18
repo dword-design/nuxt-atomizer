@@ -2,6 +2,7 @@ import { delay, endent } from '@dword-design/functions';
 import puppeteer from '@dword-design/puppeteer';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
+import getPort from 'get-port';
 import inFolder from 'in-folder';
 import nuxtDevReady from 'nuxt-dev-ready';
 import { ofetch } from 'ofetch';
@@ -37,12 +38,13 @@ export default {
       `,
     });
 
-    const nuxt = execaCommand('nuxt dev');
+    const port = await getPort();
+    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
 
     try {
-      await nuxtDevReady();
+      await nuxtDevReady(port);
       await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto('http://localhost:3000');
+      await this.page.goto(`http://localhost:${port}`);
 
       expect(
         await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
@@ -81,12 +83,13 @@ export default {
       `,
     });
 
-    const nuxt = execaCommand('nuxt dev');
+    const port = await getPort();
+    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
 
     try {
-      await nuxtDevReady();
+      await nuxtDevReady(port);
       await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto('http://localhost:3000');
+      await this.page.goto(`http://localhost:${port}`);
 
       expect(
         await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
@@ -116,18 +119,19 @@ export default {
       },
     });
 
-    const nuxt = execaCommand('nuxt dev');
+    const port = await getPort();
+    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
 
     try {
-      await nuxtDevReady();
+      await nuxtDevReady(port);
       await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto('http://localhost:3000');
+      await this.page.goto(`http://localhost:${port}`);
 
       expect(
         await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
       ).toEqual('rgb(255, 0, 0)');
 
-      await this.page.goto('http://localhost:3000/other');
+      await this.page.goto(`http://localhost:${port}/other`);
 
       expect(
         await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
@@ -155,12 +159,16 @@ export default {
       'node_modules',
     );
 
-    const nuxt = execa(P.join('node_modules', '.bin', 'nuxt'), ['dev']);
+    const port = await getPort();
+
+    const nuxt = execa(P.join('node_modules', '.bin', 'nuxt'), ['dev'], {
+      env: { PORT: port },
+    });
 
     try {
-      await nuxtDevReady();
+      await nuxtDevReady(port);
       await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto('http://localhost:3000');
+      await this.page.goto(`http://localhost:${port}`);
 
       expect(
         await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
@@ -186,13 +194,14 @@ export default {
       `,
     });
 
-    const nuxt = execaCommand('nuxt dev');
+    const port = await getPort();
+    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
 
     try {
-      await nuxtDevReady();
+      await nuxtDevReady(port);
       await delay(ATOMIZER_BUILD_DELAY);
 
-      expect(await ofetch('http://localhost:3000/acss.css')).toMatch(
+      expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
         '.C\\(foo\\){color:red}',
       );
     } finally {
@@ -216,13 +225,14 @@ export default {
       `,
     });
 
-    const nuxt = execaCommand('nuxt dev');
+    const port = await getPort();
+    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
 
     try {
-      await nuxtDevReady();
+      await nuxtDevReady(port);
       await delay(ATOMIZER_BUILD_DELAY);
 
-      expect(await ofetch('http://localhost:3000/acss.css')).toMatch(
+      expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
         '.C\\(foo\\){color:red}',
       );
     } finally {
@@ -246,12 +256,13 @@ export default {
       `,
     });
 
-    const nuxt = execaCommand('nuxt dev');
+    const port = await getPort();
+    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
 
     try {
-      await nuxtDevReady();
+      await nuxtDevReady(port);
       await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto('http://localhost:3000');
+      await this.page.goto(`http://localhost:${port}`);
 
       expect(
         await this.page.$eval('.elem', el => window.getComputedStyle(el).color),

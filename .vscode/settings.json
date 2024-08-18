@@ -18,14 +18,12 @@
     ".releaserc.json": true,
     ".renovaterc.json": true,
     ".vscode": true,
-    ".yarn": true,
-    ".yarnrc.yml": true,
     "CHANGELOG.md": true,
     "LICENSE.md": true,
     "coverage": true,
     "dist": true,
     "node_modules": true,
-    "yarn.lock": true
+    "pnpm-lock.yaml": true
   },
   "workbench.editor.enablePreview": false
 }
