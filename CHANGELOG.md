@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.40...v2.0.0) (2024-08-18)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#93](https://github.com/dword-design/nuxt-atomizer/issues/93)) ([e31ab1b](https://github.com/dword-design/nuxt-atomizer/commit/e31ab1bb68c777fc9b4beaf7041d85131adc75d3))
+* update dependency postcss to v8.4.24 ([66c277c](https://github.com/dword-design/nuxt-atomizer/commit/66c277cc77d27cca2855461544cdb68eb54da243))
+
+
+### BREAKING CHANGES
+
+* node.js >= 18
+* migrate to esm
+nuxt 3 support
+
 ## [1.1.40](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.39...v1.1.40) (2023-04-07)
 
 
