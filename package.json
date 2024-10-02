@@ -54,7 +54,7 @@
     "tree-kill-promise": "^3.0.14",
     "with-local-tmp-dir": "^5.1.1"
   },
-  "packageManager": "pnpm@9.7.1+sha256.46f1bbc8f8020aa9869568c387198f1a813f21fb44c82f400e7d1dbde6c70b40",
+  "packageManager": "pnpm@9.12.0+sha512.4abf725084d7bcbafbd728bfc7bee61f2f791f977fd87542b3579dcb23504d170d46337945e4c66485cd12d588a0c0e570ed9c477e7ccdd8507cf05f3f92eaca",
   "engines": {
     "node": ">=18"
   },
