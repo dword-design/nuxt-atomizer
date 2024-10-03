@@ -27,8 +27,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       jiti:
-        specifier: ^1.21.6
-        version: 1.21.6
+        specifier: ^2.0.0
+        version: 2.1.2
       serve-static:
         specifier: ^1.15.0
         version: 1.16.2
