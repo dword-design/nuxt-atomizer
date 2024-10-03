@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/dword-design/nuxt-atomizer/compare/v2.0.0...v2.0.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* update pnpm to v9.12.0 ([#117](https://github.com/dword-design/nuxt-atomizer/issues/117)) ([f72f33f](https://github.com/dword-design/nuxt-atomizer/commit/f72f33ff847439b0b1ec08fa4d4e3805f6de08c2))
+
 # [2.0.0](https://github.com/dword-design/nuxt-atomizer/compare/v1.1.40...v2.0.0) (2024-08-18)
 
 
