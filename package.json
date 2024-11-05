@@ -36,7 +36,7 @@
     "clean-css": "^5.3.3",
     "depcheck-package-name": "^3.0.1",
     "fs-extra": "^11.2.0",
-    "jiti": "^1.21.6",
+    "jiti": "^2.0.0",
     "serve-static": "^1.15.0",
     "webpack-atomizer-loader": "github:dword-design/webpack-atomizer-loader#fork"
   },
