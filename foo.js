@@ -14,6 +14,7 @@ const nuxt = execaCommand('nuxt dev', { stdio: 'inherit' });
 
 try {
   await nuxtDevReady();
+  await new Promise(resolve => setTimeout(resolve, 1000));
 } finally {
   //nuxt.kill('SIGINT');
   //await nuxt;
