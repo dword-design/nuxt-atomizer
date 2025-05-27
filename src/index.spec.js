@@ -3,6 +3,7 @@ import { test } from '@playwright/test';
 import { execaCommand } from 'execa';
 import nuxtDevReady from 'nuxt-dev-ready';
 import outputFiles from 'output-files';
+import kill from 'tree-kill-promise';
 import withLocalTmpDir from 'with-local-tmp-dir';
 
 //let reset;
@@ -24,7 +25,8 @@ test('minimal', async () => {
   try {
     await nuxtDevReady();
   } finally {
-    nuxt.kill('SIGINT');
-    await nuxt;
+    //nuxt.kill('SIGINT');
+    //await nuxt;
+    await kill(nuxt.pid);
   }
 });
