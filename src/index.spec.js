@@ -14,7 +14,7 @@ test('minimal', async () => {
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
-        modules: ['../src/index.js'],
+        //modules: ['../src/index.js'],
       };
     `,
     'pages/index.vue': endent`
