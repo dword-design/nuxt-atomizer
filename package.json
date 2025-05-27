@@ -30,7 +30,7 @@
     "dedent": "^1.6.0",
     "execa": "^9.5.2",
     "fs-extra": "^11.3.0",
-    "nuxt": "^3.17.4",
+    "nuxt": "^3.17.1",
     "nuxt-dev-ready": "^3.0.0",
     "tree-kill-promise": "^3.0.14"
   },
