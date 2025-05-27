@@ -5,9 +5,9 @@ import nuxtDevReady from 'nuxt-dev-ready';
 import outputFiles from 'output-files';
 import withLocalTmpDir from 'with-local-tmp-dir';
 
-let reset;
-test.beforeEach(async () => (reset = await withLocalTmpDir()));
-test.afterEach(() => reset());
+//let reset;
+test.beforeEach(async () => /*reset = */ await withLocalTmpDir());
+//test.afterEach(() => reset());
 
 test('minimal', async () => {
   await outputFiles({
