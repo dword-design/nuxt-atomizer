@@ -45,17 +45,21 @@ jobs:
           lfs: true
       - uses: actions/setup-node@v4
         with:
+          check-latest: true
           node-version: ${{ matrix.node }}
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm test
-      - if: failure()
-        uses: actions/upload-artifact@v3
+      - if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: Image Snapshot Diffs
-          path: "**/__image_snapshots__/__diff_output__"
+          if-no-files-found: ignore
+          name: Images from tests
+          path: |-
+            **/__image_snapshots__/__diff_output__
+            test-results/*/**
       - if: matrix.os == 'ubuntu-latest' && matrix.node == 20
         uses: codecov/codecov-action@v3
         with:

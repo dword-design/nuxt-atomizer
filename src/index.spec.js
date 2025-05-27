@@ -1,13 +1,10 @@
 import { delay, endent } from '@dword-design/functions';
 import puppeteer from '@dword-design/puppeteer';
-import { execa, execaCommand } from 'execa';
-import fs from 'fs-extra';
+import { execaCommand } from 'execa';
 import getPort from 'get-port';
-import inFolder from 'in-folder';
 import nuxtDevReady from 'nuxt-dev-ready';
 import { ofetch } from 'ofetch';
 import outputFiles from 'output-files';
-import P from 'path';
 import kill from 'tree-kill-promise';
 import withLocalTmpDir from 'with-local-tmp-dir';
 
@@ -47,22 +44,14 @@ export default {
       await this.page.goto(`http://localhost:${port}`);
 
       expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+        await this.page.$eval(
+          '.elem',
+          el => globalThis.getComputedStyle(el).color,
+        ),
       ).toEqual('rgb(255, 0, 0)');
     } finally {
       await kill(nuxt.pid);
     }
-  },
-  before: async () => {
-    await fs.outputFile(
-      P.join('node_modules', '.cache', 'nuxt2', 'package.json'),
-      JSON.stringify({ dependencies: { nuxt: '^2' } }),
-    );
-
-    await inFolder(P.join('node_modules', '.cache', 'nuxt2'), async () => {
-      await execaCommand('corepack use pnpm');
-      await execaCommand('pnpm install', { stdio: 'inherit' });
-    });
   },
   async beforeEach() {
     this.resetWithLocalTmpDir = await withLocalTmpDir();
@@ -92,7 +81,10 @@ export default {
       await this.page.goto(`http://localhost:${port}`);
 
       expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+        await this.page.$eval(
+          '.elem',
+          el => globalThis.getComputedStyle(el).color,
+        ),
       ).toEqual('rgb(255, 0, 0)');
     } finally {
       await kill(nuxt.pid);
@@ -128,51 +120,20 @@ export default {
       await this.page.goto(`http://localhost:${port}`);
 
       expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+        await this.page.$eval(
+          '.elem',
+          el => globalThis.getComputedStyle(el).color,
+        ),
       ).toEqual('rgb(255, 0, 0)');
 
       await this.page.goto(`http://localhost:${port}/other`);
 
       expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+        await this.page.$eval(
+          '.elem',
+          el => globalThis.getComputedStyle(el).color,
+        ),
       ).toEqual('rgb(0, 128, 0)');
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  async nuxt2() {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          modules: ['~/../src/index.js'],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="elem C(red)">Hello world</div>
-        </template>
-      `,
-    });
-
-    await fs.symlink(
-      P.join('..', 'node_modules', '.cache', 'nuxt2', 'node_modules'),
-      'node_modules',
-    );
-
-    const port = await getPort();
-
-    const nuxt = execa(P.join('node_modules', '.bin', 'nuxt'), ['dev'], {
-      env: { PORT: port },
-    });
-
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto(`http://localhost:${port}`);
-
-      expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
-      ).toEqual('rgb(255, 0, 0)');
     } finally {
       await kill(nuxt.pid);
     }
@@ -202,7 +163,7 @@ export default {
       await delay(ATOMIZER_BUILD_DELAY);
 
       expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
-        '.C\\(foo\\){color:red}',
+        String.raw`.C\(foo\){color:red}`,
       );
     } finally {
       await kill(nuxt.pid);
@@ -233,7 +194,7 @@ export default {
       await delay(ATOMIZER_BUILD_DELAY);
 
       expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
-        '.C\\(foo\\){color:red}',
+        String.raw`.C\(foo\){color:red}`,
       );
     } finally {
       await kill(nuxt.pid);
@@ -265,7 +226,10 @@ export default {
       await this.page.goto(`http://localhost:${port}`);
 
       expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
+        await this.page.$eval(
+          '.elem',
+          el => globalThis.getComputedStyle(el).color,
+        ),
       ).toEqual('rgb(255, 0, 0)');
     } finally {
       await kill(nuxt.pid);
