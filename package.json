@@ -29,24 +29,14 @@
     "prepublishOnly": "base prepublishOnly",
     "test": "base test"
   },
-  "dependencies": {
-    "@nuxt/kit": "^3.17.4",
-    "atomizer": "^3.30.0",
-    "atomizer-plugins": "^1.2.1",
-    "clean-css": "^5.3.3",
-    "fs-extra": "^11.3.0",
-    "jiti": "^2.4.2"
-  },
   "devDependencies": {
     "@dword-design/base": "^12.0.12",
     "@dword-design/base-config-nuxt-module": "^1.0.4",
     "@dword-design/functions": "^6.0.2",
     "@playwright/test": "^1.52.0",
     "execa": "^9.6.0",
-    "get-port": "^7.1.0",
     "nuxt": "^3.17.4",
     "nuxt-dev-ready": "^3.0.0",
-    "ofetch": "^1.4.1",
     "output-files": "^2.0.32",
     "playwright": "^1.52.0",
     "playwright-chromium": "^1.52.0",
