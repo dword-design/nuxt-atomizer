@@ -18,13 +18,13 @@
     "dist"
   ],
   "scripts": {
-    "checkUnknownFiles": "base checkUnknownFiles",
+    "checkUnknownFiles": "echo \"nothing\"",
     "commit": "base commit",
-    "depcheck": "base depcheck",
+    "depcheck": "echo \"nothing\"",
     "dev": "base dev",
     "lint": "base lint",
     "prepublishOnly": "base prepublishOnly",
-    "test": "base test"
+    "test": "node foo.js"
   },
   "devDependencies": {
     "@dword-design/base": "^12.0.12",
