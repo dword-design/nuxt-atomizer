@@ -1,16 +1,14 @@
 import { endent } from '@dword-design/functions';
 import { execaCommand } from 'execa';
 import nuxtDevReady from 'nuxt-dev-ready';
-import outputFiles from 'output-files';
 import kill from 'tree-kill-promise';
+import fs from 'fs-extra';
 
-await outputFiles({
-  'pages/index.vue': endent`
-    <template>
-      <div />
-    </template>
-  `,
-});
+await fs.outputFile('pages/index.vue', endent`
+  <template>
+    <div />
+  </template>
+`);
 
 const nuxt = execaCommand('nuxt dev');
 
@@ -20,4 +18,6 @@ try {
   //nuxt.kill('SIGINT');
   //await nuxt;
   await kill(nuxt.pid);
+  await execaCommand('nuxi cleanup');
+  await fs.remove('pages/index.vue');
 }
