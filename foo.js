@@ -1,4 +1,4 @@
-import dedent from '@dword-design/functions';
+import dedent from 'dedent';
 import { execaCommand } from 'execa';
 import nuxtDevReady from 'nuxt-dev-ready';
 import kill from 'tree-kill-promise';
