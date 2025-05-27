@@ -35,9 +35,6 @@ importers:
       playwright:
         specifier: ^1.52.0
         version: 1.52.0
-      playwright-chromium:
-        specifier: ^1.52.0
-        version: 1.52.0
       playwright-local-tmp-dir:
         specifier: ^1.0.2
         version: 1.0.2(@playwright/test@1.52.0)
@@ -6661,11 +6658,6 @@ packages:
     resolution: {integrity: sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==}
     engines: {node: '>=8'}
 
-  playwright-chromium@1.52.0:
-    resolution: {integrity: sha512-ZTpzBzRFFRglyqRnAqdK5mFaw1P41qe8V2zSR+fA0eKPgGEEaH7r91ejXKijs3WhReatRcatHQe3ndMBMN1PLA==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   playwright-core@1.52.0:
     resolution: {integrity: sha512-l2osTgLXSMeuLZOML9qYODUQoPPnUsKsb5/P6LJ2e6uPKXUdPK5WYhN4z03G+YNbWmGDY4YENauNu4ZKczreHg==}
     engines: {node: '>=18'}
@@ -9578,7 +9570,7 @@ snapshots:
       gonzales-pe: 4.3.0
       node-source-walk: 7.0.1
 
-  '@dword-design/babel-config@4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@1.21.7))(typescript@5.8.3))(jest@27.5.1)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@1.21.7)))':
+  '@dword-design/babel-config@4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(jest@27.5.1)(typescript@5.8.3)':
     dependencies:
       '@babel/plugin-proposal-partial-application': 7.27.1(@babel/core@7.27.3)
       '@babel/plugin-proposal-pipeline-operator': 7.27.1(@babel/core@7.27.3)
@@ -9595,16 +9587,10 @@ snapshots:
       load-pkg: '@dword-design/load-pkg@4.0.0'
     transitivePeerDependencies:
       - '@babel/core'
-      - '@eslint/json'
-      - '@types/eslint'
       - '@types/node'
-      - '@typescript-eslint/parser'
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
       - jest
       - supports-color
       - typescript
-      - vue-eslint-parser
 
   '@dword-design/babel-plugin-wildcard@0.0.3':
     dependencies:
@@ -9651,7 +9637,7 @@ snapshots:
     dependencies:
       '@commitlint/cli': 18.6.1(@types/node@22.15.21)(typescript@5.8.3)
       '@commitlint/config-conventional': 18.6.3
-      '@dword-design/babel-config': 4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@1.21.7))(typescript@5.8.3))(jest@27.5.1)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@1.21.7)))
+      '@dword-design/babel-config': 4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(jest@27.5.1)(typescript@5.8.3)
       '@dword-design/base-config-node': 3.0.4(jiti@1.21.7)
       '@dword-design/ci': 4.0.6
       '@dword-design/eslint-config': 6.0.6(@babel/core@7.27.3)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@1.21.7))(typescript@5.8.3))(babel-plugin-module-resolver@5.0.2)(jest@27.5.1)(jiti@1.21.7)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@1.21.7)))
@@ -16718,10 +16704,6 @@ snapshots:
   pkg-up@3.1.0:
     dependencies:
       find-up: 3.0.0
-
-  playwright-chromium@1.52.0:
-    dependencies:
-      playwright-core: 1.52.0
 
   playwright-core@1.52.0: {}
 
