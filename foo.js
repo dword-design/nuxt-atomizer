@@ -10,7 +10,7 @@ await fs.outputFile('pages/index.vue', endent`
   </template>
 `);
 
-const nuxt = execaCommand('nuxt dev');
+const nuxt = execaCommand('nuxt dev', { stdio: 'inherit' });
 
 try {
   await nuxtDevReady();
