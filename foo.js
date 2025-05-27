@@ -15,9 +15,9 @@ const nuxt = execaCommand('nuxt dev', { stdio: 'inherit' });
 try {
   await nuxtDevReady();
 } finally {
-  nuxt.kill('SIGINT');
-  await nuxt;
-  //await kill(nuxt.pid);
+  //nuxt.kill('SIGINT');
+  //await nuxt;
+  await kill(nuxt.pid);
   await execaCommand('nuxi cleanup');
   await fs.remove('pages/index.vue');
 }
