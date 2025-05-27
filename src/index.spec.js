@@ -10,7 +10,7 @@ import kill from 'tree-kill-promise';
 
 const ATOMIZER_BUILD_DELAY = 1000;
 
-test('minimal', async ({ page }) => {
+test('minimal', async () => {
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
