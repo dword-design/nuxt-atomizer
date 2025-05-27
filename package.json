@@ -27,6 +27,7 @@
     "test": "node foo.js"
   },
   "devDependencies": {
+    "dedent": "^1.6.0",
     "execa": "^9.6.0",
     "nuxt": "^3.17.4",
     "nuxt-dev-ready": "^3.0.0",

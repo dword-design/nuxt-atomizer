@@ -1,10 +1,10 @@
-import { endent } from '@dword-design/functions';
+import dedent from '@dword-design/functions';
 import { execaCommand } from 'execa';
 import nuxtDevReady from 'nuxt-dev-ready';
 import kill from 'tree-kill-promise';
 import fs from 'fs-extra';
 
-await fs.outputFile('pages/index.vue', endent`
+await fs.outputFile('pages/index.vue', dedent`
   <template>
     <div />
   </template>
