@@ -24,11 +24,10 @@ test('minimal', async () => {
     `,
   });
 
-  const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
+  const nuxt = execaCommand('nuxt dev');
 
   try {
-    await nuxtDevReady(port);
+    await nuxtDevReady();
     await delay(ATOMIZER_BUILD_DELAY);
   } finally {
     await kill(nuxt.pid);
