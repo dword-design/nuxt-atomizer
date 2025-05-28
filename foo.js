@@ -23,7 +23,6 @@ try {
   console.log('killing')
   await kill(nuxt.pid, 'SIGKILL');
   console.log('killed')
-  await nuxt;
   console.log('waited after kill')
   await execaCommand('nuxi cleanup');
   await fs.remove('pages/index.vue');
