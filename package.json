@@ -45,7 +45,7 @@
     "fs-extra": "^11.3.0",
     "mocha": "^11.5.0",
     "nuxi": "^3.25.1",
-    "nuxt-babel": "^1.0.1",
+    "nuxt-babel-runtime": "^5.0.12",
     "tinyexec": "^1.0.1"
   }
 }
