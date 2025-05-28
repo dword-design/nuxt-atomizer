@@ -2,9 +2,9 @@ import dedent from 'dedent';
 import { execaCommand } from 'execa';
 import nuxtDevReady from 'nuxt-dev-ready';
 import kill from 'tree-kill-promise';
-import { x } from 'tinyexec'
+import { spawn } from 'node:child_process'
 
-let nuxt = x('nuxt', ['dev'], { throwOnError: true, nodeOptions: { stdio: 'inherit' } });
+let nuxt = spawn('nuxt', ['dev'], { stdio: 'inherit' });
 
 try {
   await nuxtDevReady();

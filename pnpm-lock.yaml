@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@nuxt/cli':
+        specifier: ^3.25.1
+        version: 3.25.1(magicast@0.3.5)
       mocha:
         specifier: ^11.5.0
         version: 11.5.0
+      nuxi:
+        specifier: ^3.25.1
+        version: 3.25.1
       tinyexec:
         specifier: ^1.0.1
         version: 1.0.1
@@ -21,9 +27,6 @@ importers:
       execa:
         specifier: ^9.6.0
         version: 9.6.0
-      fs-extra:
-        specifier: ^11.3.0
-        version: 11.3.0
       nuxt:
         specifier: ^3.17.4
         version: 3.17.4(@parcel/watcher@2.5.1)(@types/node@22.15.23)(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(rollup@4.41.1)(terser@5.40.0)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.23)(jiti@2.4.2)(terser@5.40.0)(yaml@2.8.0))(yaml@2.8.0)
@@ -1956,10 +1959,6 @@ packages:
     resolution: {integrity: sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==}
     engines: {node: '>= 0.8'}
 
-  fs-extra@11.3.0:
-    resolution: {integrity: sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==}
-    engines: {node: '>=14.14'}
-
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
@@ -2300,9 +2299,6 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  jsonfile@6.1.0:
-    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
-
   junk@4.0.1:
     resolution: {integrity: sha512-Qush0uP+G8ZScpGMZvHUiRfI0YBWuB3gVBYlI0v0vvOJt5FLicco+IkP0a50LqTTQhmts/m6tP5SWE+USyIvcQ==}
     engines: {node: '>=12.20'}
@@ -2618,6 +2614,11 @@ packages:
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
+
+  nuxi@3.25.1:
+    resolution: {integrity: sha512-NeZDRVdn58QF3+clrkKRXE3PtfhE4hkmj8/Wqf6th707SDqmdBb/KZV2BE4lwL+FhgEDgtN7AMF8WZCkicudXg==}
+    engines: {node: ^16.10.0 || >=18.0.0}
+    hasBin: true
 
   nuxt-dev-ready@3.0.0:
     resolution: {integrity: sha512-7F+zTD0I/a7QZPUpnFq4WWt8TbMYUYRjQTKBnFLayIYqx6a5k8w61n9aS3gafHwRGBEX00mPv7ggn0n3b004Cg==}
@@ -3484,10 +3485,6 @@ packages:
   unimport@5.0.1:
     resolution: {integrity: sha512-1YWzPj6wYhtwHE+9LxRlyqP4DiRrhGfJxdtH475im8ktyZXO3jHj/3PZ97zDdvkYoovFdi0K4SKl3a7l92v3sQ==}
     engines: {node: '>=18.12.0'}
-
-  universalify@2.0.1:
-    resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
-    engines: {node: '>= 10.0.0'}
 
   unixify@1.0.0:
     resolution: {integrity: sha512-6bc58dPYhCMHHuwxldQxO3RRNZ4eCogZ/st++0+fcC1nr0jiGUtAdBJ2qzmLQWSxbtz42pWt4QQMiZ9HvZf5cg==}
@@ -5903,12 +5900,6 @@ snapshots:
 
   fresh@2.0.0: {}
 
-  fs-extra@11.3.0:
-    dependencies:
-      graceful-fs: 4.2.11
-      jsonfile: 6.1.0
-      universalify: 2.0.1
-
   fs.realpath@1.0.0: {}
 
   fsevents@2.3.3:
@@ -6224,12 +6215,6 @@ snapshots:
   jsesc@3.1.0: {}
 
   json5@2.2.3: {}
-
-  jsonfile@6.1.0:
-    dependencies:
-      universalify: 2.0.1
-    optionalDependencies:
-      graceful-fs: 4.2.11
 
   junk@4.0.1: {}
 
@@ -6620,6 +6605,8 @@ snapshots:
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
+
+  nuxi@3.25.1: {}
 
   nuxt-dev-ready@3.0.0:
     dependencies:
@@ -7636,8 +7623,6 @@ snapshots:
       tinyglobby: 0.2.13
       unplugin: 2.3.5
       unplugin-utils: 0.2.4
-
-  universalify@2.0.1: {}
 
   unixify@1.0.0:
     dependencies:

@@ -24,12 +24,11 @@
     "dev": "base dev",
     "lint": "base lint",
     "prepublishOnly": "base prepublishOnly",
-    "test": "node tinyexec.js"
+    "test": "node spawn.js"
   },
   "devDependencies": {
     "dedent": "^1.6.0",
     "execa": "^9.6.0",
-    "fs-extra": "^11.3.0",
     "nuxt": "^3.17.4",
     "nuxt-dev-ready": "^3.0.0",
     "tree-kill-promise": "^3.0.14"
@@ -42,7 +41,9 @@
     "access": "public"
   },
   "dependencies": {
+    "@nuxt/cli": "^3.25.1",
     "mocha": "^11.5.0",
+    "nuxi": "^3.25.1",
     "tinyexec": "^1.0.1"
   }
 }
