@@ -21,7 +21,7 @@ try {
   console.log('waited')
 } finally {
   console.log('killing')
-  await kill(nuxt.pid, 'SIGKILL');
+  await nuxt.kill();
   console.log('killed')
   console.log('waited after kill')
   //await execaCommand('nuxi cleanup');
