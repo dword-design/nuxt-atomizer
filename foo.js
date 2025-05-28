@@ -12,7 +12,7 @@ await fs.outputFile('pages/index.vue', dedent`
 
 const nuxt = execaCommand('nuxt dev', {
   stdio: 'inherit',
-}).catch(() => {});
+});
 
 try {
   await nuxtDevReady();
@@ -24,6 +24,6 @@ try {
   await kill(nuxt.pid, 'SIGKILL');
   console.log('killed')
   console.log('waited after kill')
-  await execaCommand('nuxi cleanup');
-  await fs.remove('pages/index.vue');
+  //await execaCommand('nuxi cleanup');
+  //await fs.remove('pages/index.vue');
 }
