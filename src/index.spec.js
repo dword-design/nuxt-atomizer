@@ -9,6 +9,7 @@ import { x } from 'tinyexec';
 import kill from 'tree-kill-promise';
 
 const ATOMIZER_BUILD_DELAY = 1000;
+const KILL_DELAY = 2000;
 
 test('atomizer.config.js', async ({ page }) => {
   await outputFiles({
@@ -47,6 +48,7 @@ test('atomizer.config.js', async ({ page }) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
+    await delay(KILL_DELAY);
   }
 });
 
@@ -82,6 +84,7 @@ test('css', async ({ page }) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
+    await delay(KILL_DELAY);
   }
 });
 
@@ -132,6 +135,7 @@ test('multiple files', async ({ page }) => {
     ).toEqual('rgb(0, 128, 0)');
   } finally {
     await kill(nuxt.pid);
+    await delay(KILL_DELAY);
   }
 });
 
@@ -167,6 +171,7 @@ test('options', async () => {
     );
   } finally {
     await kill(nuxt.pid);
+    await delay(KILL_DELAY);
   }
 });
 
@@ -202,6 +207,7 @@ test('top-level options', async () => {
     );
   } finally {
     await kill(nuxt.pid);
+    await delay(KILL_DELAY);
   }
 });
 
@@ -240,5 +246,6 @@ test('variables', async ({ page }) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
+    await delay(KILL_DELAY);
   }
 });
