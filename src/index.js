@@ -4,14 +4,14 @@ import { addServerHandler, createResolver, defineNuxtModule } from '@nuxt/kit';
 import utils from 'atomizer/src/lib/utils.js';
 import { vite as atomizer } from 'atomizer-plugins';
 import fs from 'fs-extra';
-import { createJiti } from 'jiti';
+import jiti from 'jiti';
 
 const FILENAME = 'acss.css';
 const resolver = createResolver(import.meta.url);
 
 export default defineNuxtModule({
   setup: async (options, nuxt) => {
-    const jitiInstance = createJiti(process.cwd(), {
+    const jitiInstance = jiti(process.cwd(), {
       esmResolve: true,
       interopDefault: true,
     });
