@@ -10,24 +10,6 @@ import kill from 'tree-kill-promise';
 
 const ATOMIZER_BUILD_DELAY = 1000;
 
-test('minimal', async () => {
-  await outputFiles({
-    'pages/index.vue': endent`
-      <template>
-        <div />
-      </template>
-    `,
-  });
-
-  const nuxt = x('nuxt', ['dev']);
-
-  try {
-    await nuxtDevReady();
-  } finally {
-    await kill(nuxt.pid);
-  }
-});
-
 test('atomizer.config.js', async ({ page }) => {
   await outputFiles({
     'atomizer.config.js': endent`
@@ -48,7 +30,7 @@ test('atomizer.config.js', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = x('nuxt', ['dev'], { nodeOptionns: { env: { PORT: port } } });
+  const nuxt = x('nuxt', ['dev'], { nodeOptions: { env: { PORT: port } } });
 
   try {
     await nuxtDevReady(port);
@@ -80,7 +62,7 @@ test('css', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = x('nuxt', ['dev'], { nodeOptionns: { env: { PORT: port } } });
+  const nuxt = x('nuxt', ['dev'], { nodeOptions: { env: { PORT: port } } });
 
   try {
     await nuxtDevReady(port);
@@ -119,7 +101,7 @@ test('multiple files', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = x('nuxt', ['dev'], { nodeOptionns: { env: { PORT: port } } });
+  const nuxt = x('nuxt', ['dev'], { nodeOptions: { env: { PORT: port } } });
 
   try {
     await nuxtDevReady(port);
@@ -162,7 +144,7 @@ test('options', async () => {
   });
 
   const port = await getPort();
-  const nuxt = x('nuxt', ['dev'], { nodeOptionns: { env: { PORT: port } } });
+  const nuxt = x('nuxt', ['dev'], { nodeOptions: { env: { PORT: port } } });
 
   try {
     await nuxtDevReady(port);
@@ -194,7 +176,7 @@ test('top-level options', async () => {
   });
 
   const port = await getPort();
-  const nuxt = x('nuxt', ['dev'], { nodeOptionns: { env: { PORT: port } } });
+  const nuxt = x('nuxt', ['dev'], { nodeOptions: { env: { PORT: port } } });
 
   try {
     await nuxtDevReady(port);
@@ -226,7 +208,7 @@ test('variables', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = x('nuxt', ['dev'], { nodeOptionns: { env: { PORT: port } } });
+  const nuxt = x('nuxt', ['dev'], { nodeOptions: { env: { PORT: port } } });
 
   try {
     await nuxtDevReady(port);
