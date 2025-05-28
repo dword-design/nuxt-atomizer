@@ -12,16 +12,16 @@ await fs.outputFile('pages/index.vue', dedent`
 `);
 
 const nuxt = x('nuxt', ['dev'], {
-  throwOnError: true,
+  //throwOnError: true,
   nodeOptions: {
     stdio: 'inherit',
-    env: {
+    /*env: {
       ...process.env,
       _PORT: '3000',
       PORT: '3000',
       HOST: '127.0.0.1',
       NODE_ENV: 'development',
-    },
+    },*/
   },
 });
 
