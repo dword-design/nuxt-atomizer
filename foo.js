@@ -3,6 +3,7 @@ import { execaCommand } from 'execa';
 import nuxtDevReady from 'nuxt-dev-ready';
 import kill from 'tree-kill-promise';
 import fs from 'fs-extra';
+import { x } from 'tinyexec'
 
 await fs.outputFile('pages/index.vue', dedent`
   <template>
@@ -10,8 +11,11 @@ await fs.outputFile('pages/index.vue', dedent`
   </template>
 `);
 
-const nuxt = execaCommand('nuxt dev', {
-  stdio: 'inherit',
+const nuxt = x('nuxi', ['_dev', {
+  throwOnError: true,
+  nodeOptions: {
+    stdio: 'inherit',
+  },
 });
 
 try {
@@ -21,7 +25,7 @@ try {
   console.log('waited')
 } finally {
   console.log('killing')
-  await nuxt.kill();
+  nuxt.kill();
   console.log('killed')
   console.log('waited after kill')
   //await execaCommand('nuxi cleanup');

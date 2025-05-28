@@ -11,6 +11,9 @@ importers:
       mocha:
         specifier: ^11.5.0
         version: 11.5.0
+      tinyexec:
+        specifier: ^1.0.1
+        version: 1.0.1
     devDependencies:
       dedent:
         specifier: ^1.6.0

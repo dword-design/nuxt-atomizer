@@ -42,6 +42,7 @@
     "access": "public"
   },
   "dependencies": {
-    "mocha": "^11.5.0"
+    "mocha": "^11.5.0",
+    "tinyexec": "^1.0.1"
   }
 }
