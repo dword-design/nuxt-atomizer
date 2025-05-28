@@ -30,7 +30,7 @@ test('atomizer.config.js', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -62,7 +62,7 @@ test('css', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -101,7 +101,7 @@ test('multiple files', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -141,7 +141,7 @@ test('module options', async () => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -173,7 +173,7 @@ test('top-level options', async () => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -205,7 +205,7 @@ test('top-level options 2', async () => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -237,7 +237,7 @@ test('variables', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
