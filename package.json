@@ -24,7 +24,7 @@
     "dev": "base dev",
     "lint": "base lint",
     "prepublishOnly": "base prepublishOnly",
-    "test": "node foo.js"
+    "test": "node foo2.js"
   },
   "devDependencies": {
     "dedent": "^1.6.0",
