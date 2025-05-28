@@ -1,5 +1,5 @@
 import dedent from 'dedent';
-import { execa, execaCommand } from 'execa';
+import { execaCommand } from 'execa';
 import nuxtDevReady from 'nuxt-dev-ready';
 import kill from 'tree-kill-promise';
 import fs from 'fs-extra';
@@ -11,13 +11,17 @@ await fs.outputFile('pages/index.vue', dedent`
   </template>
 `);
 
-const nuxt = execa('nuxi', ['_dev'], {
-  stdio: 'inherit',
-  env: {
-    _PORT: '3000',
-    PORT: '3000',
-    HOST: '127.0.0.1',
-    NODE_ENV: 'development',
+const nuxt = x('nuxt', ['dev'], {
+  throwOnError: true,
+  nodeOptions: {
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      _PORT: '3000',
+      PORT: '3000',
+      HOST: '127.0.0.1',
+      NODE_ENV: 'development',
+    },
   },
 });
 
