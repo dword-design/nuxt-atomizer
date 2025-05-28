@@ -216,6 +216,43 @@ test('top-level options', async () => {
   }
 });
 
+test('top-level options 2', async () => {
+  await outputFiles({
+    'nuxt.config.js': endent`
+      export default {
+        atomizer: {
+          custom: { foo: 'red' },
+        },
+        modules: ['../src/index.js'],
+      };
+    `,
+    'pages/index.vue': endent`
+      <template>
+        <div class="C(foo)">Hello world</div>
+      </template>
+    `,
+  });
+
+  const port = await getPort();
+
+  const nuxt = x('nuxt', ['dev'], {
+    nodeOptions: { env: { PORT: port } },
+    throwOnError: true,
+  });
+
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+
+    expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
+      String.raw`.C\(foo\){color:red}`,
+    );
+  } finally {
+    await kill(nuxt.pid);
+    await delay(KILL_DELAY);
+  }
+});
+
 test('variables', async ({ page }) => {
   await outputFiles({
     'nuxt.config.js': endent`
