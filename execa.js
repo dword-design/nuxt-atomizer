@@ -11,13 +11,13 @@ await fs.outputFile('sub/pages/index.vue', dedent`
   </template>
 `);
 
-let nuxt = execaCommand('nuxt dev', { reject: false, stdio: 'inherit', cwd: 'sub' });
+let nuxt = execaCommand('nuxt dev --no-fork', { reject: false, stdio: 'inherit', cwd: 'sub' });
 
 try {
   await nuxtDevReady();
   await new Promise(resolve => setTimeout(resolve, 1000));
 } finally {
-  await kill(nuxt.pid);
+  nuxt.kill();//kill(nuxt.pid);
   await new Promise(resolve => setTimeout(resolve, 5000));
   await fs.remove('sub')
 }
