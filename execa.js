@@ -11,7 +11,7 @@ await fs.outputFile('sub/pages/index.vue', dedent`
   </template>
 `);
 
-let nuxt = execaCommand('nuxt-babel', { stdio: 'inherit', cwd: 'sub' });
+let nuxt = execaCommand('nuxt-babel dev', { stdio: 'inherit', cwd: 'sub' });
 
 try {
   await nuxtDevReady();
