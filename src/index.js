@@ -20,13 +20,7 @@ export default defineNuxtModule({
       ? jitiInstance('./atomizer.config.js')
       : {};
 
-    options = utils.mergeConfigs([
-      fileConfig,
-      nuxt.options.atomizer,
-      options,
-      { custom: { foasdfao: 'adsfs' } },
-    ]);
-
+    options = utils.mergeConfigs([fileConfig, nuxt.options.atomizer, options]);
     const cssPath = pathLib.join(nuxt.options.buildDir, FILENAME);
 
     nuxt.options.app.head.link.push({

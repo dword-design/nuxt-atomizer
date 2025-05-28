@@ -1,11 +1,11 @@
 import { delay, endent } from '@dword-design/functions';
 import { expect } from '@playwright/test';
+import { execaCommand } from 'execa';
 import getPort from 'get-port';
 import nuxtDevReady from 'nuxt-dev-ready';
 import { ofetch } from 'ofetch';
 import outputFiles from 'output-files';
 import { test } from 'playwright-local-tmp-dir';
-import { x } from 'tinyexec';
 import kill from 'tree-kill-promise';
 
 const ATOMIZER_BUILD_DELAY = 1000;
@@ -30,11 +30,7 @@ test('atomizer.config.js', async ({ page }) => {
   });
 
   const port = await getPort();
-
-  const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port } },
-    throwOnError: true,
-  });
+  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -66,11 +62,7 @@ test('css', async ({ page }) => {
   });
 
   const port = await getPort();
-
-  const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
-    throwOnError: true,
-  });
+  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -109,11 +101,7 @@ test('multiple files', async ({ page }) => {
   });
 
   const port = await getPort();
-
-  const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port } },
-    throwOnError: true,
-  });
+  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -153,11 +141,7 @@ test('module options', async () => {
   });
 
   const port = await getPort();
-
-  const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port } },
-    throwOnError: true,
-  });
+  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -189,11 +173,7 @@ test('top-level options', async () => {
   });
 
   const port = await getPort();
-
-  const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port } },
-    throwOnError: true,
-  });
+  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -225,11 +205,7 @@ test('top-level options 2', async () => {
   });
 
   const port = await getPort();
-
-  const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port } },
-    throwOnError: true,
-  });
+  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
@@ -261,11 +237,7 @@ test('variables', async ({ page }) => {
   });
 
   const port = await getPort();
-
-  const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port } },
-    throwOnError: true,
-  });
+  const nuxt = execaCommand('nuxt dev', { env: { PORT: port }, reject: false });
 
   try {
     await nuxtDevReady(port);
