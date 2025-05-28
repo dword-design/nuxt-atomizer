@@ -11,10 +11,15 @@ await fs.outputFile('pages/index.vue', dedent`
   </template>
 `);
 
-const nuxt = x('nuxi', ['_dev', {
+const nuxt = x('nuxi', ['dev'], {
   throwOnError: true,
   nodeOptions: {
     stdio: 'inherit',
+    env: {
+      PORT: '3000',
+      //HOST: '127.0.0.1',
+      //NODE_ENV: 'test',
+    },
   },
 });
 
@@ -28,6 +33,6 @@ try {
   nuxt.kill();
   console.log('killed')
   console.log('waited after kill')
-  //await execaCommand('nuxi cleanup');
-  //await fs.remove('pages/index.vue');
+  await execaCommand('nuxi cleanup');
+  await fs.remove('pages/index.vue');
 }
