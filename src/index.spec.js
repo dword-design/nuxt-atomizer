@@ -32,7 +32,7 @@ test('atomizer.config.js', async ({ page }) => {
   const port = await getPort();
 
   const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
+    nodeOptions: { env: { PORT: port, NODE_ENV: '' }, stdio: 'inherit' },
   });
 
   try {
@@ -67,7 +67,7 @@ test('css', async ({ page }) => {
   const port = await getPort();
 
   const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
+    nodeOptions: { env: { PORT: port, NODE_ENV: '' }, stdio: 'inherit' },
   });
 
   try {
@@ -109,7 +109,7 @@ test('multiple files', async ({ page }) => {
   const port = await getPort();
 
   const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
+    nodeOptions: { env: { PORT: port, NODE_ENV: '' }, stdio: 'inherit' },
   });
 
   try {
@@ -155,7 +155,7 @@ test('options', async () => {
   const port = await getPort();
 
   const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
+    nodeOptions: { env: { PORT: port, NODE_ENV: '' }, stdio: 'inherit' },
   });
 
   try {
@@ -190,7 +190,7 @@ test('top-level options', async () => {
   const port = await getPort();
 
   const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
+    nodeOptions: { env: { PORT: port, NODE_ENV: '' }, stdio: 'inherit' },
   });
 
   try {
@@ -225,7 +225,7 @@ test('variables', async ({ page }) => {
   const port = await getPort();
 
   const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
+    nodeOptions: { env: { PORT: port, NODE_ENV: '' }, stdio: 'inherit' },
   });
 
   try {
