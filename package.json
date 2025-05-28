@@ -24,7 +24,7 @@
     "dev": "base dev",
     "lint": "base lint",
     "prepublishOnly": "base prepublishOnly",
-    "test": "node spawn.js"
+    "test": "node execa.js"
   },
   "devDependencies": {
     "dedent": "^1.6.0",
@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@nuxt/cli": "^3.25.1",
+    "fs-extra": "^11.3.0",
     "mocha": "^11.5.0",
     "nuxi": "^3.25.1",
     "tinyexec": "^1.0.1"

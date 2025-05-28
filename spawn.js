@@ -5,9 +5,9 @@ import kill from 'tree-kill-promise';
 import { spawn } from 'node:child_process'
 import pathLib from 'path'
 
-let nuxt = spawn(pathLib.resolve('node_modules', '.bin', 'nuxt'), ['dev'], { stdio: 'inherit' });
+let nuxt = spawn('nuxt', ['dev'], { stdio: 'inherit' });
 
-try {
+/*try {
   await nuxtDevReady();
   await new Promise(resolve => setTimeout(resolve, 1000));
 } finally {
@@ -16,4 +16,4 @@ try {
   await nuxt;
   console.log('terminated')
   //await kill(nuxt.pid);
-}
+}*/
