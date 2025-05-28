@@ -5,7 +5,7 @@ import kill from 'tree-kill-promise';
 import { spawn } from 'node:child_process'
 import pathLib from 'path'
 
-let nuxt = spawn(pathLib.join('node_modules', '.bin', 'nuxt'), ['dev'], { stdio: 'inherit' });
+let nuxt = spawn(pathLib.resolve('node_modules', '.bin', 'nuxt'), ['dev'], { stdio: 'inherit' });
 
 try {
   await nuxtDevReady();
