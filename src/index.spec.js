@@ -13,7 +13,7 @@ const ATOMIZER_BUILD_DELAY = 1000;
 test('atomizer.config.js', async ({ page }) => {
   await outputFiles({
     'atomizer.config.js': endent`
-      module.exports = {
+      export default {
         custom: { foo: 'red' },
       };
     `,
@@ -68,7 +68,7 @@ test('css', async ({ page }) => {
   const port = await getPort();
 
   const nuxt = x('nuxt', ['dev'], {
-    nodeOptions: { env: { PORT: port } },
+    nodeOptions: { env: { PORT: port }, stdio: 'inherit' },
     throwOnError: true,
   });
 
