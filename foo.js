@@ -16,8 +16,6 @@ try {
   await nuxtDevReady();
   await new Promise(resolve => setTimeout(resolve, 1000));
 } finally {
-  //nuxt.kill('SIGINT');
-  //await nuxt;
   await kill(nuxt.pid);
   await execaCommand('nuxi cleanup');
   await fs.remove('pages/index.vue');
