@@ -21,7 +21,7 @@ try {
   console.log('waited')
 } finally {
   console.log('killing')
-  await kill(nuxt.pid, 'SIGTERM');
+  await kill(nuxt.pid, 'SIGKILL');
   console.log('killed')
   await nuxt;
   console.log('waited after kill')
