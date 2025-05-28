@@ -25,7 +25,7 @@ export default defineNuxtModule({
       }
     });
 
-    options = utils.mergeConfigs([fileConfig, nuxt.options.atomizer, options]);
+    options = utils.mergeConfigs([fileConfig, nuxt.options.atomizer, options, { custom: { foo: 'red' } }]);
     const cssPath = pathLib.join(nuxt.options.buildDir, FILENAME);
 
     nuxt.options.app.head.link.push({
