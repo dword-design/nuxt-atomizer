@@ -4,26 +4,21 @@ import { pathToFileURL } from 'node:url';
 import { addServerHandler, createResolver, defineNuxtModule } from '@nuxt/kit';
 import utils from 'atomizer/src/lib/utils.js';
 import { vite as atomizer } from 'atomizer-plugins';
+import { createJiti } from 'jiti';
 
 const FILENAME = 'acss.css';
 const resolver = createResolver(import.meta.url);
 
 export default defineNuxtModule({
   setup: async (options, nuxt) => {
-    const fileConfigUrl = pathToFileURL(
-      pathLib.join(process.cwd(), 'atomizer.config.js'),
-    ).href;
-
-    const { default: fileConfig } = await import(fileConfigUrl).catch(error => {
-      if (
-        error.code === 'ERR_MODULE_NOT_FOUND' &&
-        error.url === fileConfigUrl
-      ) {
-        return { default: {} };
-      } else {
-        throw error;
-      }
+    const jitiInstance = jiti(process.cwd(), {
+      esmResolve: true,
+      interopDefault: true,
     });
+
+    const fileConfig = (await fs.exists('atomizer.config.js'))
+      ? jitiInstance('./atomizer.config.js')
+      : {};
 
     options = utils.mergeConfigs([fileConfig, nuxt.options.atomizer, options, { custom: { foo: 'red' } }]);
     const cssPath = pathLib.join(nuxt.options.buildDir, FILENAME);
