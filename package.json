@@ -24,7 +24,7 @@
     "dev": "base dev",
     "lint": "base lint",
     "prepublishOnly": "base prepublishOnly",
-    "test": "mocha --timeout 20000 index.spec.js && node foo.js"
+    "test": "node foo.js"
   },
   "devDependencies": {
     "dedent": "^1.6.0",

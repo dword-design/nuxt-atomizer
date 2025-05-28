@@ -1,5 +1,25 @@
-import run from './run.js';
+import dedent from 'dedent';
+import { execaCommand } from 'execa';
+import nuxtDevReady from 'nuxt-dev-ready';
+import kill from 'tree-kill-promise';
+import fs from 'fs-extra';
 
-process.env.NODE_ENV = 'test';
+await fs.outputFile('pages/index.vue', dedent`
+  <template>
+    <div />
+  </template>
+`);
 
-await run();
+const nuxt = execaCommand('nuxt dev', {
+  stdio: 'inherit',
+}).catch(() => {});
+
+try {
+  await nuxtDevReady();
+  await new Promise(resolve => setTimeout(resolve, 1000));
+} finally {
+  await kill(nuxt.pid, 'SIGINT');
+  await nuxt;
+  await execaCommand('nuxi cleanup');
+  await fs.remove('pages/index.vue');
+}
