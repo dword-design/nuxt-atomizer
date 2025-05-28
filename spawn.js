@@ -4,7 +4,7 @@ import nuxtDevReady from 'nuxt-dev-ready';
 import kill from 'tree-kill-promise';
 import { spawn } from 'node:child_process'
 
-let nuxt = spawn('nuxt', ['dev'], { stdio: 'inherit' });
+let nuxt = spawn('node_modules/.bin/nuxt', ['dev'], { stdio: 'inherit' });
 
 try {
   await nuxtDevReady();
