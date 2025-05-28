@@ -11,14 +11,16 @@ await fs.outputFile('pages/index.vue', dedent`
   </template>
 `);
 
-const nuxt = x('nuxi', ['dev'], {
+const nuxt = x('nuxi', ['_dev'], {
   throwOnError: true,
   nodeOptions: {
     stdio: 'inherit',
     env: {
+      ...process.env,
+      _PORT: '3000',
       PORT: '3000',
-      //HOST: '127.0.0.1',
-      //NODE_ENV: 'test',
+      HOST: '127.0.0.1',
+      NODE_ENV: 'development',
     },
   },
 });
