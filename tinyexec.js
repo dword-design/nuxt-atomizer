@@ -11,7 +11,7 @@ await fs.outputFile('pages/index.vue', dedent`
   </template>
 `);
 
-let nuxt = x('nuxt', ['dev'], { throwOnError: true });
+let nuxt = x('nuxt', ['dev'], { throwOnError: true, nodeOptions: { stdio: 'inherit' } });
 
 try {
   await nuxtDevReady();
