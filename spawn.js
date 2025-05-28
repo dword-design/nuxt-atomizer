@@ -10,5 +10,9 @@ try {
   await nuxtDevReady();
   await new Promise(resolve => setTimeout(resolve, 1000));
 } finally {
-  await kill(nuxt.pid);
+  nuxt.kill('SIGINT')
+  console.log('killed')
+  await nuxt;
+  console.log('terminated')
+  //await kill(nuxt.pid);
 }
