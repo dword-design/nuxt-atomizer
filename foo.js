@@ -16,10 +16,15 @@ const nuxt = execaCommand('nuxt dev', {
 
 try {
   await nuxtDevReady();
+  console.log('ready')
   await new Promise(resolve => setTimeout(resolve, 1000));
+  console.log('waited')
 } finally {
+  console.log('killing')
   await kill(nuxt.pid, 'SIGINT');
+  console.log('killed')
   await nuxt;
+  console.log('waited after kill')
   await execaCommand('nuxi cleanup');
   await fs.remove('pages/index.vue');
 }
