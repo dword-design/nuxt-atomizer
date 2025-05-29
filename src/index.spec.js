@@ -36,7 +36,6 @@ test('atomizer.config.js', async ({ page }, testInfo) => {
     cwd: dir,
     env: { PORT: port },
     reject: false,
-    stdio: 'inherit',
   });
 
   try {
