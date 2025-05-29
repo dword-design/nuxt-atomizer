@@ -8,11 +8,11 @@ import { test } from 'playwright-local-tmp-dir';
 test('valid', async () => {
   await fs.outputFile('pages/index.vue', dedent`
     <template>
-      <div />
+      <div>Hellow world</div>
     </template>
   `);
 
-  let nuxt = execa('../execa-wrapper.js', { reject: false, stdio: 'inherit' });
+  let nuxt = execa('nuxt dev --no-fork', { reject: false, stdio: 'inherit' });
 
   try {
     await nuxtDevReady();
