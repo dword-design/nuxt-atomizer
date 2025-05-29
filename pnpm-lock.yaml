@@ -57,15 +57,15 @@ importers:
       output-files:
         specifier: ^2.0.32
         version: 2.0.32
-      p-wait-for:
-        specifier: ^5.0.2
-        version: 5.0.2
       playwright:
         specifier: ^1.52.0
         version: 1.52.0
       playwright-chromium:
         specifier: ^1.52.0
         version: 1.52.0
+      tree-kill-promise:
+        specifier: ^3.0.14
+        version: 3.0.14
 
 packages:
 
@@ -7939,6 +7939,14 @@ packages:
     resolution: {integrity: sha512-aXJDbk6SnumuaZSANd21XAo15ucCDE38H4fkqiGsc3MhCK+wOlZvLP9cB/TvpHT0mOyWgC4Z8EwRlzqYSUzdsA==}
     engines: {node: '>= 0.4'}
 
+  tree-kill-promise@3.0.14:
+    resolution: {integrity: sha512-HMWDVJq3oby7uxA2AKVThX5fKkF7GPT3FhjNb75tG/6P4tQBtIhElaSucFHFMlBV5f3e+KPqIlHsJVZjueKX/A==}
+    engines: {node: '>=14'}
+
+  tree-kill@1.2.2:
+    resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
+    hasBin: true
+
   trim-newlines@3.0.1:
     resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
     engines: {node: '>=8'}
@@ -9620,7 +9628,7 @@ snapshots:
       gonzales-pe: 4.3.0
       node-source-walk: 7.0.1
 
-  '@dword-design/babel-config@4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@1.21.7))(typescript@5.8.3))(jest@27.5.1)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@1.21.7)))':
+  '@dword-design/babel-config@4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(jest@27.5.1)(typescript@5.8.3)':
     dependencies:
       '@babel/plugin-proposal-partial-application': 7.27.1(@babel/core@7.27.3)
       '@babel/plugin-proposal-pipeline-operator': 7.27.1(@babel/core@7.27.3)
@@ -9637,16 +9645,10 @@ snapshots:
       load-pkg: '@dword-design/load-pkg@4.0.0'
     transitivePeerDependencies:
       - '@babel/core'
-      - '@eslint/json'
-      - '@types/eslint'
       - '@types/node'
-      - '@typescript-eslint/parser'
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
       - jest
       - supports-color
       - typescript
-      - vue-eslint-parser
 
   '@dword-design/babel-plugin-wildcard@0.0.3':
     dependencies:
@@ -9693,7 +9695,7 @@ snapshots:
     dependencies:
       '@commitlint/cli': 18.6.1(@types/node@22.15.21)(typescript@5.8.3)
       '@commitlint/config-conventional': 18.6.3
-      '@dword-design/babel-config': 4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@1.21.7))(typescript@5.8.3))(jest@27.5.1)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@1.21.7)))
+      '@dword-design/babel-config': 4.2.2(@babel/core@7.27.3)(@types/node@22.15.21)(jest@27.5.1)(typescript@5.8.3)
       '@dword-design/base-config-node': 3.0.4(jiti@1.21.7)
       '@dword-design/ci': 4.0.6
       '@dword-design/eslint-config': 6.0.6(@babel/core@7.27.3)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@1.21.7))(typescript@5.8.3))(babel-plugin-module-resolver@5.0.2)(jest@27.5.1)(jiti@1.21.7)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@1.21.7)))
@@ -18120,6 +18122,12 @@ snapshots:
       punycode: 2.3.1
 
   traverse@0.6.8: {}
+
+  tree-kill-promise@3.0.14:
+    dependencies:
+      tree-kill: 1.2.2
+
+  tree-kill@1.2.2: {}
 
   trim-newlines@3.0.1: {}
 
