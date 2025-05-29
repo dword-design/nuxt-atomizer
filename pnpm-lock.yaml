@@ -23,6 +23,12 @@ importers:
       nuxt-babel-runtime:
         specifier: ^5.0.12
         version: 5.0.12(@nuxt/cli@3.25.1(magicast@0.3.5))(@vue/compiler-dom@3.5.15)(rollup@4.41.1)(vite@6.3.5(@types/node@22.15.23)(jiti@2.4.2)(terser@5.40.0)(yaml@2.8.0))(vue@3.5.15(typescript@5.8.3))
+      playwright:
+        specifier: ^1.52.0
+        version: 1.52.0
+      playwright-local-tmp-dir:
+        specifier: ^1.0.2
+        version: 1.0.2(@playwright/test@1.52.0)
       tinyexec:
         specifier: ^1.0.1
         version: 1.0.1
@@ -186,6 +192,10 @@ packages:
     engines: {node: '>=12.17.0'}
     peerDependencies:
       '@babel/core': '*'
+
+  '@dword-design/chdir@2.1.4':
+    resolution: {integrity: sha512-cHpMTx4XepHQi3hmDnKma5YXU4pm01k9xKI1k8Wwq25cN3j0FCWbiji11hdrRYr6+uDC9mrb/M5Mo0okYiNRzA==}
+    engines: {node: '>=12'}
 
   '@dword-design/dedent@0.7.0':
     resolution: {integrity: sha512-OFmAmzKiDUh9m7WRMYcoEOPI7b5tS5hdqQmtKDwF+ZssVJv8a+GHo9VOtFsmlw3h8Roh/9QzFWIsjSFZyQUMdg==}
@@ -831,6 +841,11 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
+
+  '@playwright/test@1.52.0':
+    resolution: {integrity: sha512-uh6W7sb55hl7D6vsAeA+V2p5JnlAqzhqFyF0VcJkKZXkgnFcVG9PziERRHQfPLfNGx1C292a4JqbWzhR8L4R1g==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
@@ -2028,6 +2043,11 @@ packages:
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -2906,6 +2926,22 @@ packages:
 
   pkg-types@2.1.0:
     resolution: {integrity: sha512-wmJwA+8ihJixSoHKxZJRBQG1oY8Yr9pGLzRmSsNms0iNWyHHAlZCa7mmKiFR10YPZuz/2k169JiS/inOjBCZ2A==}
+
+  playwright-core@1.52.0:
+    resolution: {integrity: sha512-l2osTgLXSMeuLZOML9qYODUQoPPnUsKsb5/P6LJ2e6uPKXUdPK5WYhN4z03G+YNbWmGDY4YENauNu4ZKczreHg==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  playwright-local-tmp-dir@1.0.2:
+    resolution: {integrity: sha512-uATBqggiqKdfFDKerIHPsCm5PTOM8tDgl4UZcYY3Jqwy2Sw3VdrMoedxme/ibMqSC27cTh1gewAynfHdjQic6g==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@playwright/test': ^1
+
+  playwright@1.52.0:
+    resolution: {integrity: sha512-JAwMNMBlxJ2oD1kce4KPtMkDeKGHQstdpFPcPH3maElAXon/QZeTvtsfXmTMRyO9TslfoYOXkSsvao2nE1ilTw==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   port-ready@0.1.0:
     resolution: {integrity: sha512-6IJ0anhRxATv5dZ5PJgYOwDbl3Jeu2GqnB/gLngC16Mur/4/ELdkIrg3D5RNS9bfek+r10rs3206+Jgv65Z+bw==}
@@ -3876,6 +3912,10 @@ packages:
     resolution: {integrity: sha512-DLiFIXYC5fMPxaRg832S6F5mJYvePtmO5G9v9IgUFPhXm9/GkXarH/TUrBAVzhTCzAj9anE/+GjrgXp/54nOgw==}
     engines: {node: '>= 12.0.0'}
 
+  with-local-tmp-dir@5.1.1:
+    resolution: {integrity: sha512-7HZx3lC2BNMqrkob/29+GxBZtt0J2j5qyYn77/FivEAKS2Q90Tlc6KaqjBAPnVo0B3OfHDtCBZG3i8S6kD8N8A==}
+    engines: {node: '>=14'}
+
   workerpool@6.5.1:
     resolution: {integrity: sha512-Fs4dNYcsdpYSAfVxhnl1L5zTksjvOJxtC5hzMNl+1t9B8hTJTdKDyZ5ju7ztgPy+ft9tBFXoOlDNiOT9WUXZlA==}
 
@@ -4161,6 +4201,8 @@ snapshots:
   '@dword-design/babel-register-esm@2.0.3(@babel/core@7.27.3)':
     dependencies:
       '@babel/core': 7.27.3
+
+  '@dword-design/chdir@2.1.4': {}
 
   '@dword-design/dedent@0.7.0':
     dependencies:
@@ -4840,6 +4882,10 @@ snapshots:
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
+
+  '@playwright/test@1.52.0':
+    dependencies:
+      playwright: 1.52.0
 
   '@polka/url@1.0.0-next.29': {}
 
@@ -6073,6 +6119,9 @@ snapshots:
 
   fs.realpath@1.0.0: {}
 
+  fsevents@2.3.2:
+    optional: true
+
   fsevents@2.3.3:
     optional: true
 
@@ -7120,6 +7169,19 @@ snapshots:
       exsolve: 1.0.5
       pathe: 2.0.3
 
+  playwright-core@1.52.0: {}
+
+  playwright-local-tmp-dir@1.0.2(@playwright/test@1.52.0):
+    dependencies:
+      '@playwright/test': 1.52.0
+      with-local-tmp-dir: 5.1.1
+
+  playwright@1.52.0:
+    dependencies:
+      playwright-core: 1.52.0
+    optionalDependencies:
+      fsevents: 2.3.2
+
   port-ready@0.1.0:
     dependencies:
       connect-port: 0.0.1
@@ -8096,6 +8158,11 @@ snapshots:
       stack-trace: 0.0.10
       triple-beam: 1.4.1
       winston-transport: 4.9.0
+
+  with-local-tmp-dir@5.1.1:
+    dependencies:
+      '@dword-design/chdir': 2.1.4
+      tmp-promise: 3.0.3
 
   workerpool@6.5.1: {}
 

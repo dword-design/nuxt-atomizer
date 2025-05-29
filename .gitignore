@@ -3,3 +3,5 @@
 /node_modules
 /.nuxt
 /.output
+/test-results
+/.last-run.json
