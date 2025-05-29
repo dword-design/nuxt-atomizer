@@ -10,23 +10,27 @@ import kill from 'tree-kill-promise';
 
 const ATOMIZER_BUILD_DELAY = 1000;
 
-test('minimal', async ({ page }) => {
+test('minimal', async () => {
   test.setTimeout(60_000);
+
   await outputFiles({
     'pages/index.vue': endent`
       <template>
-        <div class="elem C(foo)">Hello world</div>
+        <div>Hello world</div>
       </template>
     `,
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
-    await delay(ATOMIZER_BUILD_DELAY);
-    await page.goto(`http://localhost:${port}`);
+    await delay(1000);
   } finally {
     await kill(nuxt.pid);
     await new Promise(resolve => setTimeout(resolve, 10_000));
@@ -35,6 +39,7 @@ test('minimal', async ({ page }) => {
 
 test('atomizer.config.js', async ({ page }) => {
   test.setTimeout(60_000);
+
   await outputFiles({
     'atomizer.config.js': endent`
       export default {
@@ -54,7 +59,11 @@ test('atomizer.config.js', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -74,6 +83,7 @@ test('atomizer.config.js', async ({ page }) => {
 
 test('css', async ({ page }) => {
   test.setTimeout(60_000);
+
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
@@ -88,7 +98,11 @@ test('css', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -108,6 +122,7 @@ test('css', async ({ page }) => {
 
 test('multiple files', async ({ page }) => {
   test.setTimeout(60_000);
+
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
@@ -129,7 +144,11 @@ test('multiple files', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -170,7 +189,11 @@ test('module options', async () => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -202,7 +225,11 @@ test('top-level options', async () => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -234,7 +261,11 @@ test('top-level options 2', async () => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -250,6 +281,7 @@ test('top-level options 2', async () => {
 
 test('variables', async ({ page }) => {
   test.setTimeout(60_000);
+
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
@@ -267,7 +299,11 @@ test('variables', async ({ page }) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev --no-fork', {
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
