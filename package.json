@@ -47,6 +47,7 @@
     "nuxi": "^3.25.1",
     "nuxt-babel-runtime": "^5.0.12",
     "playwright": "^1.52.0",
+    "playwright-chromium": "^1.52.0",
     "playwright-local-tmp-dir": "^1.0.2",
     "tinyexec": "^1.0.1"
   }
