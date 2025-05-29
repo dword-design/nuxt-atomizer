@@ -35,7 +35,7 @@ test('atomizer.config.js', async ({ page }, testInfo) => {
   const nuxt = execaCommand('nuxt dev', {
     cwd: dir,
     env: { PORT: port },
-
+    reject: false,
     stdio: 'inherit',
   });
 
