@@ -1,274 +1,264 @@
 import { delay, endent } from '@dword-design/functions';
-import puppeteer from '@dword-design/puppeteer';
-import { execa, execaCommand } from 'execa';
-import fs from 'fs-extra';
+import { expect, test } from '@playwright/test';
+import { execaCommand } from 'execa';
 import getPort from 'get-port';
-import inFolder from 'in-folder';
 import nuxtDevReady from 'nuxt-dev-ready';
 import { ofetch } from 'ofetch';
 import outputFiles from 'output-files';
-import P from 'path';
 import kill from 'tree-kill-promise';
-import withLocalTmpDir from 'with-local-tmp-dir';
 
 const ATOMIZER_BUILD_DELAY = 1000;
 
-export default {
-  async afterEach() {
-    await this.page.close();
-    await this.browser.close();
-    await this.resetWithLocalTmpDir();
-  },
-  async 'atomizer.config.js'() {
-    await outputFiles({
-      'atomizer.config.js': endent`
-        module.exports = {
+test('atomizer.config.js', async ({ page }, testInfo) => {
+  const dir = testInfo.outputPath('');
+
+  await outputFiles(dir, {
+    'atomizer.config.js': endent`
+      export default {
+        custom: { foo: 'red' },
+      };
+    `,
+    'nuxt.config.js': endent`
+      export default {
+        modules: ['../../src/index.js'],
+      };
+    `,
+    'pages/index.vue': endent`
+      <template>
+        <div class="elem C(foo)">Hello world</div>
+      </template>
+    `,
+  });
+
+  const port = await getPort();
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
+
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+    await page.goto(`http://localhost:${port}`);
+
+    expect(
+      await page
+        .locator('.elem')
+        .evaluate(el => globalThis.getComputedStyle(el).color),
+    ).toEqual('rgb(255, 0, 0)');
+  } finally {
+    await kill(nuxt.pid);
+  }
+});
+
+test('css', async ({ page }, testInfo) => {
+  const dir = testInfo.outputPath('');
+
+  await outputFiles(dir, {
+    'nuxt.config.js': endent`
+      export default {
+        modules: ['../../src/index.js'],
+      };
+    `,
+    'pages/index.vue': endent`
+      <template>
+        <div class="elem C(red)">Hello world</div>
+      </template>
+    `,
+  });
+
+  const port = await getPort();
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
+
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+    await page.goto(`http://localhost:${port}`);
+
+    expect(
+      await page
+        .locator('.elem')
+        .evaluate(el => globalThis.getComputedStyle(el).color),
+    ).toEqual('rgb(255, 0, 0)');
+  } finally {
+    await kill(nuxt.pid);
+  }
+});
+
+test('multiple files', async ({ page }, testInfo) => {
+  const dir = testInfo.outputPath('');
+
+  await outputFiles(dir, {
+    'nuxt.config.js': endent`
+      export default {
+        modules: ['../../src/index.js'],
+      };
+    `,
+    pages: {
+      'index.vue': endent`
+        <template>
+          <div class="elem C(red)">Hello world</div>
+        </template>
+      `,
+      'other.vue': endent`
+        <template>
+          <div class="elem C(green)">Hello world</div>
+        </template>
+      `,
+    },
+  });
+
+  const port = await getPort();
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
+
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+    await page.goto(`http://localhost:${port}`);
+
+    expect(
+      await page
+        .locator('.elem')
+        .evaluate(el => globalThis.getComputedStyle(el).color),
+    ).toEqual('rgb(255, 0, 0)');
+
+    await page.goto(`http://localhost:${port}/other`);
+
+    expect(
+      await page
+        .locator('.elem')
+        .evaluate(el => globalThis.getComputedStyle(el).color),
+    ).toEqual('rgb(0, 128, 0)');
+  } finally {
+    await kill(nuxt.pid);
+  }
+});
+
+test('module options', async ({}, testInfo) => {
+  const dir = testInfo.outputPath('');
+
+  await outputFiles(dir, {
+    'nuxt.config.js': endent`
+      export default {
+        modules: [['../../src/index.js', { custom: { foo: 'red' } }]],
+      };
+    `,
+    'pages/index.vue': endent`
+      <template>
+        <div class="elem C(foo)">Hello world</div>
+      </template>
+    `,
+  });
+
+  const port = await getPort();
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
+
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+
+    expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
+      String.raw`.C\(foo\){color:red}`,
+    );
+  } finally {
+    await kill(nuxt.pid);
+  }
+});
+
+test('top-level options', async ({}, testInfo) => {
+  const dir = testInfo.outputPath('');
+
+  await outputFiles(dir, {
+    'nuxt.config.js': endent`
+      export default {
+        atomizer: {
           custom: { foo: 'red' },
-        };
-      `,
-      'nuxt.config.js': endent`
-        export default {
-          modules: ['../src/index.js'],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="elem C(foo)">Hello world</div>
-        </template>
-      `,
-    });
+        },
+        modules: ['../../src/index.js'],
+      };
+    `,
+    'pages/index.vue': endent`
+      <template>
+        <div class="C(foo)">Hello world</div>
+      </template>
+    `,
+  });
 
-    const port = await getPort();
-    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
+  const port = await getPort();
 
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto(`http://localhost:${port}`);
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
 
-      expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
-      ).toEqual('rgb(255, 0, 0)');
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  before: async () => {
-    await fs.outputFile(
-      P.join('node_modules', '.cache', 'nuxt2', 'package.json'),
-      JSON.stringify({ dependencies: { nuxt: '^2' } }),
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+
+    expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
+      String.raw`.C\(foo\){color:red}`,
     );
+  } finally {
+    await kill(nuxt.pid);
+  }
+});
 
-    await inFolder(P.join('node_modules', '.cache', 'nuxt2'), async () => {
-      await execaCommand('corepack use pnpm');
-      await execaCommand('pnpm install', { stdio: 'inherit' });
-    });
-  },
-  async beforeEach() {
-    this.resetWithLocalTmpDir = await withLocalTmpDir();
-    this.browser = await puppeteer.launch();
-    this.page = await this.browser.newPage();
-  },
-  async css() {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          modules: ['../src/index.js'],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="elem C(red)">Hello world</div>
-        </template>
-      `,
-    });
+test('variables', async ({ page }, testInfo) => {
+  const dir = testInfo.outputPath('');
 
-    const port = await getPort();
-    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
+  await outputFiles(dir, {
+    'nuxt.config.js': endent`
+      export default {
+        atomizer: {
+          custom: { foo: 'red' },
+        },
+        modules: [['../../src/index.js', { custom: { foo: 'red' } }]],
+      };
+    `,
+    'pages/index.vue': endent`
+      <template>
+        <div class="elem C(foo)">Hello world</div>
+      </template>
+    `,
+  });
 
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto(`http://localhost:${port}`);
+  const port = await getPort();
 
-      expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
-      ).toEqual('rgb(255, 0, 0)');
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  async 'multiple files'() {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          modules: ['../src/index.js'],
-        };
-      `,
-      pages: {
-        'index.vue': endent`
-          <template>
-            <div class="elem C(red)">Hello world</div>
-          </template>
-        `,
-        'other.vue': endent`
-          <template>
-            <div class="elem C(green)">Hello world</div>
-          </template>
-        `,
-      },
-    });
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
 
-    const port = await getPort();
-    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+    await page.goto(`http://localhost:${port}`);
 
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto(`http://localhost:${port}`);
-
-      expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
-      ).toEqual('rgb(255, 0, 0)');
-
-      await this.page.goto(`http://localhost:${port}/other`);
-
-      expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
-      ).toEqual('rgb(0, 128, 0)');
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  async nuxt2() {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          modules: ['~/../src/index.js'],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="elem C(red)">Hello world</div>
-        </template>
-      `,
-    });
-
-    await fs.symlink(
-      P.join('..', 'node_modules', '.cache', 'nuxt2', 'node_modules'),
-      'node_modules',
-    );
-
-    const port = await getPort();
-
-    const nuxt = execa(P.join('node_modules', '.bin', 'nuxt'), ['dev'], {
-      env: { PORT: port },
-    });
-
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto(`http://localhost:${port}`);
-
-      expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
-      ).toEqual('rgb(255, 0, 0)');
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  options: async () => {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          atomizer: {
-            custom: { foo: 'red' },
-          },
-          modules: [['../src/index.js', { custom: { foo: 'red' } }]],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="elem C(foo)">Hello world</div>
-        </template>
-      `,
-    });
-
-    const port = await getPort();
-    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
-
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-
-      expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
-        '.C\\(foo\\){color:red}',
-      );
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  'top-level options': async () => {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          atomizer: {
-            custom: { foo: 'red' },
-          },
-          modules: ['../src/index.js'],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="C(foo)">Hello world</div>
-        </template>
-      `,
-    });
-
-    const port = await getPort();
-    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
-
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-
-      expect(await ofetch(`http://localhost:${port}/acss.css`)).toMatch(
-        '.C\\(foo\\){color:red}',
-      );
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-  async variables() {
-    await outputFiles({
-      'nuxt.config.js': endent`
-        export default {
-          atomizer: {
-            custom: { foo: 'red' },
-          },
-          modules: [['../src/index.js', { custom: { foo: 'red' } }]],
-        };
-      `,
-      'pages/index.vue': endent`
-        <template>
-          <div class="elem C(foo)">Hello world</div>
-        </template>
-      `,
-    });
-
-    const port = await getPort();
-    const nuxt = execaCommand('nuxt dev', { env: { PORT: port } });
-
-    try {
-      await nuxtDevReady(port);
-      await delay(ATOMIZER_BUILD_DELAY);
-      await this.page.goto(`http://localhost:${port}`);
-
-      expect(
-        await this.page.$eval('.elem', el => window.getComputedStyle(el).color),
-      ).toEqual('rgb(255, 0, 0)');
-    } finally {
-      await kill(nuxt.pid);
-    }
-  },
-};
+    expect(
+      await page
+        .locator('.elem')
+        .evaluate(el => globalThis.getComputedStyle(el).color),
+    ).toEqual('rgb(255, 0, 0)');
+  } finally {
+    await kill(nuxt.pid);
+  }
+});

@@ -58,10 +58,10 @@ Module that adds ACSS atomic CSS framework (aka Atomizer) support to a Nuxt.js a
 
 ```bash
 # npm
-$ npm install nuxt-atomizer
+$ npx nuxi module add nuxt-atomizer
 
 # Yarn
-$ yarn add nuxt-atomizer
+$ yarn nuxi module add nuxt-atomizer
 ```
 <!-- /INSTALL -->
 
