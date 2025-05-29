@@ -11,6 +11,9 @@ importers:
       '@nuxt/cli':
         specifier: ^3.25.1
         version: 3.25.1(magicast@0.3.5)
+      '@playwright/test':
+        specifier: ^1.52.0
+        version: 1.52.0
       fs-extra:
         specifier: ^11.3.0
         version: 11.3.0
@@ -29,9 +32,6 @@ importers:
       playwright-chromium:
         specifier: ^1.52.0
         version: 1.52.0
-      playwright-local-tmp-dir:
-        specifier: ^1.0.2
-        version: 1.0.2(@playwright/test@1.52.0)
       tinyexec:
         specifier: ^1.0.1
         version: 1.0.1
@@ -195,10 +195,6 @@ packages:
     engines: {node: '>=12.17.0'}
     peerDependencies:
       '@babel/core': '*'
-
-  '@dword-design/chdir@2.1.4':
-    resolution: {integrity: sha512-cHpMTx4XepHQi3hmDnKma5YXU4pm01k9xKI1k8Wwq25cN3j0FCWbiji11hdrRYr6+uDC9mrb/M5Mo0okYiNRzA==}
-    engines: {node: '>=12'}
 
   '@dword-design/dedent@0.7.0':
     resolution: {integrity: sha512-OFmAmzKiDUh9m7WRMYcoEOPI7b5tS5hdqQmtKDwF+ZssVJv8a+GHo9VOtFsmlw3h8Roh/9QzFWIsjSFZyQUMdg==}
@@ -2940,12 +2936,6 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright-local-tmp-dir@1.0.2:
-    resolution: {integrity: sha512-uATBqggiqKdfFDKerIHPsCm5PTOM8tDgl4UZcYY3Jqwy2Sw3VdrMoedxme/ibMqSC27cTh1gewAynfHdjQic6g==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@playwright/test': ^1
-
   playwright@1.52.0:
     resolution: {integrity: sha512-JAwMNMBlxJ2oD1kce4KPtMkDeKGHQstdpFPcPH3maElAXon/QZeTvtsfXmTMRyO9TslfoYOXkSsvao2nE1ilTw==}
     engines: {node: '>=18'}
@@ -3920,10 +3910,6 @@ packages:
     resolution: {integrity: sha512-DLiFIXYC5fMPxaRg832S6F5mJYvePtmO5G9v9IgUFPhXm9/GkXarH/TUrBAVzhTCzAj9anE/+GjrgXp/54nOgw==}
     engines: {node: '>= 12.0.0'}
 
-  with-local-tmp-dir@5.1.1:
-    resolution: {integrity: sha512-7HZx3lC2BNMqrkob/29+GxBZtt0J2j5qyYn77/FivEAKS2Q90Tlc6KaqjBAPnVo0B3OfHDtCBZG3i8S6kD8N8A==}
-    engines: {node: '>=14'}
-
   workerpool@6.5.1:
     resolution: {integrity: sha512-Fs4dNYcsdpYSAfVxhnl1L5zTksjvOJxtC5hzMNl+1t9B8hTJTdKDyZ5ju7ztgPy+ft9tBFXoOlDNiOT9WUXZlA==}
 
@@ -4209,8 +4195,6 @@ snapshots:
   '@dword-design/babel-register-esm@2.0.3(@babel/core@7.27.3)':
     dependencies:
       '@babel/core': 7.27.3
-
-  '@dword-design/chdir@2.1.4': {}
 
   '@dword-design/dedent@0.7.0':
     dependencies:
@@ -7183,11 +7167,6 @@ snapshots:
 
   playwright-core@1.52.0: {}
 
-  playwright-local-tmp-dir@1.0.2(@playwright/test@1.52.0):
-    dependencies:
-      '@playwright/test': 1.52.0
-      with-local-tmp-dir: 5.1.1
-
   playwright@1.52.0:
     dependencies:
       playwright-core: 1.52.0
@@ -8170,11 +8149,6 @@ snapshots:
       stack-trace: 0.0.10
       triple-beam: 1.4.1
       winston-transport: 4.9.0
-
-  with-local-tmp-dir@5.1.1:
-    dependencies:
-      '@dword-design/chdir': 2.1.4
-      tmp-promise: 3.0.3
 
   workerpool@6.5.1: {}
 
