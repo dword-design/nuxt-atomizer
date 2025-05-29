@@ -71,7 +71,12 @@ test('css', async ({ page }, testInfo) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { cwd: dir, env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -112,7 +117,12 @@ test('multiple files', async ({ page }, testInfo) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { cwd: dir, env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -154,7 +164,12 @@ test('module options', async ({}, testInfo) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { cwd: dir, env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -188,7 +203,12 @@ test('top-level options', async ({}, testInfo) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { cwd: dir, env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
@@ -222,7 +242,12 @@ test('variables', async ({ page }, testInfo) => {
   });
 
   const port = await getPort();
-  const nuxt = execaCommand('nuxt dev', { cwd: dir, env: { PORT: port }, reject: false });
+
+  const nuxt = execaCommand('nuxt dev', {
+    cwd: dir,
+    env: { PORT: port },
+    reject: false,
+  });
 
   try {
     await nuxtDevReady(port);
