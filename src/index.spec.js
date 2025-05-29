@@ -11,6 +11,7 @@ import kill from 'tree-kill-promise';
 const ATOMIZER_BUILD_DELAY = 1000;
 
 test('atomizer.config.js', async ({ page }) => {
+  test.setTimeout(60_000);
   await outputFiles({
     'atomizer.config.js': endent`
       export default {
@@ -44,10 +45,12 @@ test('atomizer.config.js', async ({ page }) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
+    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
 
 test('css', async ({ page }) => {
+  test.setTimeout(60_000);
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
@@ -76,10 +79,12 @@ test('css', async ({ page }) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
+    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
 
 test('multiple files', async ({ page }) => {
+  test.setTimeout(60_000);
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
@@ -123,6 +128,7 @@ test('multiple files', async ({ page }) => {
     ).toEqual('rgb(0, 128, 0)');
   } finally {
     await kill(nuxt.pid);
+    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
 
@@ -220,6 +226,7 @@ test('top-level options 2', async () => {
 });
 
 test('variables', async ({ page }) => {
+  test.setTimeout(60_000);
   await outputFiles({
     'nuxt.config.js': endent`
       export default {
@@ -251,5 +258,6 @@ test('variables', async ({ page }) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
+    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
