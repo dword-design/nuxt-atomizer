@@ -57,15 +57,15 @@ importers:
       output-files:
         specifier: ^2.0.32
         version: 2.0.32
+      p-wait-for:
+        specifier: ^5.0.2
+        version: 5.0.2
       playwright:
         specifier: ^1.52.0
         version: 1.52.0
       playwright-chromium:
         specifier: ^1.52.0
         version: 1.52.0
-      tree-kill-promise:
-        specifier: ^3.0.14
-        version: 3.0.14
 
 packages:
 
@@ -7938,14 +7938,6 @@ packages:
   traverse@0.6.8:
     resolution: {integrity: sha512-aXJDbk6SnumuaZSANd21XAo15ucCDE38H4fkqiGsc3MhCK+wOlZvLP9cB/TvpHT0mOyWgC4Z8EwRlzqYSUzdsA==}
     engines: {node: '>= 0.4'}
-
-  tree-kill-promise@3.0.14:
-    resolution: {integrity: sha512-HMWDVJq3oby7uxA2AKVThX5fKkF7GPT3FhjNb75tG/6P4tQBtIhElaSucFHFMlBV5f3e+KPqIlHsJVZjueKX/A==}
-    engines: {node: '>=14'}
-
-  tree-kill@1.2.2:
-    resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
-    hasBin: true
 
   trim-newlines@3.0.1:
     resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
@@ -18128,12 +18120,6 @@ snapshots:
       punycode: 2.3.1
 
   traverse@0.6.8: {}
-
-  tree-kill-promise@3.0.14:
-    dependencies:
-      tree-kill: 1.2.2
-
-  tree-kill@1.2.2: {}
 
   trim-newlines@3.0.1: {}
 
