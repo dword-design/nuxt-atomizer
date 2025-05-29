@@ -32,7 +32,7 @@ test('atomizer.config.js', async ({ page }, testInfo) => {
 
   const port = await getPort();
 
-  const nuxt = execaCommand('nuxt dev --no-fork', {
+  const nuxt = execaCommand('nuxt dev', {
     cwd: dir,
     env: { PORT: port },
     reject: false,
@@ -72,7 +72,7 @@ test('css', async ({ page }, testInfo) => {
 
   const port = await getPort();
 
-  const nuxt = execaCommand('nuxt dev --no-fork', {
+  const nuxt = execaCommand('nuxt dev', {
     cwd: dir,
     env: { PORT: port },
     reject: false,
@@ -118,7 +118,7 @@ test('multiple files', async ({ page }, testInfo) => {
 
   const port = await getPort();
 
-  const nuxt = execaCommand('nuxt dev --no-fork', {
+  const nuxt = execaCommand('nuxt dev', {
     cwd: dir,
     env: { PORT: port },
     reject: false,
@@ -165,7 +165,7 @@ test('module options', async ({}, testInfo) => {
 
   const port = await getPort();
 
-  const nuxt = execaCommand('nuxt dev --no-fork', {
+  const nuxt = execaCommand('nuxt dev', {
     cwd: dir,
     env: { PORT: port },
     reject: false,
@@ -204,7 +204,7 @@ test('top-level options', async ({}, testInfo) => {
 
   const port = await getPort();
 
-  const nuxt = execaCommand('nuxt dev --no-fork', {
+  const nuxt = execaCommand('nuxt dev', {
     cwd: dir,
     env: { PORT: port },
     reject: false,
@@ -243,7 +243,7 @@ test('variables', async ({ page }, testInfo) => {
 
   const port = await getPort();
 
-  const nuxt = execaCommand('nuxt dev --no-fork', {
+  const nuxt = execaCommand('nuxt dev', {
     cwd: dir,
     env: { PORT: port },
     reject: false,
