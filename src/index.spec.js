@@ -9,38 +9,7 @@ import kill from 'tree-kill-promise';
 
 const ATOMIZER_BUILD_DELAY = 1000;
 
-test('minimal', async ({ page }, testInfo) => {
-  test.setTimeout(60_000);
-  const dir = testInfo.outputPath('');
-
-  await outputFiles(dir, {
-    'pages/index.vue': endent`
-      <template>
-        <div>Hello world</div>
-      </template>
-    `,
-  });
-
-  const port = await getPort();
-
-  const nuxt = execaCommand('nuxt dev --no-fork', {
-    cwd: dir,
-    env: { PORT: port },
-    reject: false,
-  });
-
-  try {
-    await nuxtDevReady(port);
-    await delay(1000);
-    await page.goto(`http://localhost:${port}`);
-  } finally {
-    await kill(nuxt.pid);
-    await new Promise(resolve => setTimeout(resolve, 10_000));
-  }
-});
-
 test('atomizer.config.js', async ({ page }, testInfo) => {
-  test.setTimeout(60_000);
   const dir = testInfo.outputPath('');
 
   await outputFiles(dir, {
@@ -82,12 +51,10 @@ test('atomizer.config.js', async ({ page }, testInfo) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
-    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
 
 test('css', async ({ page }, testInfo) => {
-  test.setTimeout(60_000);
   const dir = testInfo.outputPath('');
 
   await outputFiles(dir, {
@@ -123,12 +90,10 @@ test('css', async ({ page }, testInfo) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
-    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
 
 test('multiple files', async ({ page }, testInfo) => {
-  test.setTimeout(60_000);
   const dir = testInfo.outputPath('');
 
   await outputFiles(dir, {
@@ -179,7 +144,6 @@ test('multiple files', async ({ page }, testInfo) => {
     ).toEqual('rgb(0, 128, 0)');
   } finally {
     await kill(nuxt.pid);
-    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
 
@@ -259,7 +223,6 @@ test('top-level options', async ({}, testInfo) => {
 });
 
 test('variables', async ({ page }, testInfo) => {
-  test.setTimeout(60_000);
   const dir = testInfo.outputPath('');
 
   await outputFiles(dir, {
@@ -298,6 +261,5 @@ test('variables', async ({ page }, testInfo) => {
     ).toEqual('rgb(255, 0, 0)');
   } finally {
     await kill(nuxt.pid);
-    await new Promise(resolve => setTimeout(resolve, 10_000));
   }
 });
