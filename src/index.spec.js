@@ -62,7 +62,7 @@ test('atomizer.config.js', async ({ page }, testInfo) => {
         .evaluate(el => globalThis.getComputedStyle(el).color),
     ).toEqual('rgb(255, 0, 0)');
   } finally {
-    nuxt.kill();
+    nuxt.kill('SIGINT');
     await pWaitFor(() => isPortFree(port));
   }
 });
@@ -97,7 +97,7 @@ test('css', async ({ page }, testInfo) => {
         .evaluate(el => globalThis.getComputedStyle(el).color),
     ).toEqual('rgb(255, 0, 0)');
   } finally {
-    nuxt.kill();
+    nuxt.kill('SIGINT');
     await pWaitFor(() => isPortFree(port));
   }
 });
@@ -147,7 +147,7 @@ test('multiple files', async ({ page }, testInfo) => {
         .evaluate(el => globalThis.getComputedStyle(el).color),
     ).toEqual('rgb(0, 128, 0)');
   } finally {
-    nuxt.kill();
+    nuxt.kill('SIGINT');
     await pWaitFor(() => isPortFree(port));
   }
 });
@@ -179,7 +179,7 @@ test('module options', async ({}, testInfo) => {
       String.raw`.C\(foo\){color:red}`,
     );
   } finally {
-    nuxt.kill();
+    nuxt.kill('SIGINT');
     await pWaitFor(() => isPortFree(port));
   }
 });
@@ -214,7 +214,7 @@ test('top-level options', async ({}, testInfo) => {
       String.raw`.C\(foo\){color:red}`,
     );
   } finally {
-    nuxt.kill();
+    nuxt.kill('SIGINT');
     await pWaitFor(() => isPortFree(port));
   }
 });
@@ -252,7 +252,7 @@ test('variables', async ({ page }, testInfo) => {
         .evaluate(el => globalThis.getComputedStyle(el).color),
     ).toEqual('rgb(255, 0, 0)');
   } finally {
-    nuxt.kill();
+    nuxt.kill('SIGINT');
     await pWaitFor(() => isPortFree(port));
   }
 });
