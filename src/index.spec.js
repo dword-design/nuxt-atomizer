@@ -10,6 +10,29 @@ import kill from 'tree-kill-promise';
 
 const ATOMIZER_BUILD_DELAY = 1000;
 
+test('minimal', async ({ page }) => {
+  test.setTimeout(60_000);
+  await outputFiles({
+    'pages/index.vue': endent`
+      <template>
+        <div class="elem C(foo)">Hello world</div>
+      </template>
+    `,
+  });
+
+  const port = await getPort();
+  const nuxt = execaCommand('nuxt dev --no-fork', { env: { PORT: port }, reject: false });
+
+  try {
+    await nuxtDevReady(port);
+    await delay(ATOMIZER_BUILD_DELAY);
+    await page.goto(`http://localhost:${port}`);
+  } finally {
+    await kill(nuxt.pid);
+    await new Promise(resolve => setTimeout(resolve, 10_000));
+  }
+});
+
 test('atomizer.config.js', async ({ page }) => {
   test.setTimeout(60_000);
   await outputFiles({
