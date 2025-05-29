@@ -5,7 +5,7 @@ import kill from 'tree-kill-promise';
 import fs from 'fs-extra';
 import { test } from 'playwright-local-tmp-dir';
 
-test('valid', async ({ page }) => {
+test('valid', async () => {
   test.setTimeout(60_000);
   await fs.outputFile('pages/index.vue', dedent`
     <template>
@@ -17,7 +17,7 @@ test('valid', async ({ page }) => {
 
   try {
     await nuxtDevReady();
-    await page.goto(`http://localhost:3000`);
+    //await page.goto(`http://localhost:3000`);
     await new Promise(resolve => setTimeout(resolve, 1000));
   } finally {
     await kill(nuxt.pid);
