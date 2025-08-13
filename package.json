@@ -44,7 +44,7 @@
     "@playwright/test": "^1.52.0",
     "execa": "^9.6.0",
     "get-port": "^7.1.0",
-    "nuxt": "^3.17.4",
+    "nuxt": "^4.0.0",
     "nuxt-dev-ready": "^3.0.0",
     "ofetch": "^1.4.1",
     "output-files": "^2.0.32",
