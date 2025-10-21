@@ -55,8 +55,8 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1
       output-files:
-        specifier: ^2.0.32
-        version: 2.0.32
+        specifier: ^3.0.0
+        version: 3.0.0
       playwright:
         specifier: ^1.52.0
         version: 1.52.0
@@ -905,6 +905,7 @@ packages:
   '@dword-design/jiti-babel-transform@2.0.0':
     resolution: {integrity: sha512-sT4TsdN6Id9k0ceZZjznmdIqdk94ZPHI21Pv0v6DeXqWRDxW0BoDVAqTbMjStSPV6n5i4AYRpwLBFN3hxYL2Lw==}
     engines: {node: '>=18'}
+    deprecated: Migrated to TypeScript
 
   '@dword-design/load-pkg@4.0.0':
     resolution: {integrity: sha512-lZxKRusgIqSg2y4jLzZzMPWyhrGPGke3YYmAxj4SoJeUGV4CmvYyhJkJnfA7Yaov7GMXZi64nlhx8D809VDazg==}
@@ -6424,6 +6425,10 @@ packages:
   output-files@2.0.32:
     resolution: {integrity: sha512-E4lArd+sN7ILmv2jAasFoXP6XGvaKGTYNKSNHBn+zcGSWzrYXye5Y5L6v2yCrDyXESGKVGrvr5fsd8TUvRYvOQ==}
     engines: {node: '>=14'}
+
+  output-files@3.0.0:
+    resolution: {integrity: sha512-mFwRkTDiw6evbQW1G6To+Yp7tN2WOVh8ne7AyzTRWtqPU+Sza3ZhtXEO3vpLnaYPYEIUSrlILeZVp0rOmcA5Kw==}
+    engines: {node: '>=18'}
 
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
@@ -16542,6 +16547,10 @@ snapshots:
   output-files@2.0.32:
     dependencies:
       '@dword-design/functions': 4.1.7
+      fs-extra: 11.3.0
+
+  output-files@3.0.0:
+    dependencies:
       fs-extra: 11.3.0
 
   own-keys@1.0.1:
