@@ -47,7 +47,7 @@
     "nuxt": "^3.17.4",
     "nuxt-dev-ready": "^3.0.0",
     "ofetch": "^1.4.1",
-    "output-files": "^2.0.32",
+    "output-files": "^3.0.0",
     "playwright": "^1.52.0",
     "playwright-chromium": "^1.52.0",
     "tree-kill-promise": "^3.0.14"
