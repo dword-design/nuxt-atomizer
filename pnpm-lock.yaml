@@ -49,8 +49,8 @@ importers:
         specifier: ^3.17.4
         version: 3.17.4(@parcel/watcher@2.5.1)(@types/node@22.15.21)(db0@0.3.2)(eslint@9.27.0(jiti@1.21.7))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.41.1)(sass@1.62.1)(terser@5.40.0)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(sass@1.62.1)(terser@5.40.0)(yaml@2.8.0))(yaml@2.8.0)
       nuxt-dev-ready:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^5.0.0
+        version: 5.0.1
       ofetch:
         specifier: ^1.4.1
         version: 1.4.1
@@ -905,6 +905,7 @@ packages:
   '@dword-design/jiti-babel-transform@2.0.0':
     resolution: {integrity: sha512-sT4TsdN6Id9k0ceZZjznmdIqdk94ZPHI21Pv0v6DeXqWRDxW0BoDVAqTbMjStSPV6n5i4AYRpwLBFN3hxYL2Lw==}
     engines: {node: '>=18'}
+    deprecated: Migrated to TypeScript
 
   '@dword-design/load-pkg@4.0.0':
     resolution: {integrity: sha512-lZxKRusgIqSg2y4jLzZzMPWyhrGPGke3YYmAxj4SoJeUGV4CmvYyhJkJnfA7Yaov7GMXZi64nlhx8D809VDazg==}
@@ -6296,9 +6297,9 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nuxt-dev-ready@3.0.0:
-    resolution: {integrity: sha512-7F+zTD0I/a7QZPUpnFq4WWt8TbMYUYRjQTKBnFLayIYqx6a5k8w61n9aS3gafHwRGBEX00mPv7ggn0n3b004Cg==}
-    engines: {node: '>=18'}
+  nuxt-dev-ready@5.0.1:
+    resolution: {integrity: sha512-gC4kYDoTqITfpzUXsIj28IPuMXlVDHgn6uaob5Jid0uB8hLg/JDmeA7HkJ8Ayje07wJsP6DtF6yhqRi4YoX5tQ==}
+    engines: {node: '>=20'}
 
   nuxt@3.17.4:
     resolution: {integrity: sha512-49tkp7/+QVhuEOFoTDVvNV6Pc5+aI7wWjZHXzLUrt3tlWLPFh0yYbNXOc3kaxir1FuhRQHHyHZ7azCPmGukfFg==}
@@ -16247,7 +16248,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuxt-dev-ready@3.0.0:
+  nuxt-dev-ready@5.0.1:
     dependencies:
       axios: 1.9.0
       p-wait-for: 5.0.2
