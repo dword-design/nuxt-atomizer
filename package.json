@@ -30,7 +30,7 @@
     "test": "base test"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.17.4",
+    "@nuxt/kit": "^4.0.0",
     "atomizer": "^3.30.0",
     "atomizer-plugins": "^1.2.1",
     "clean-css": "^5.3.3",
