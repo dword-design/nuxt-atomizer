@@ -1,11 +1,8 @@
 import CleanCSS from 'clean-css';
 import fs from 'fs-extra';
+import { defineEventHandler, setResponseHeader } from 'h3';
 
-import {
-  defineEventHandler,
-  setResponseHeader,
-  useRuntimeConfig,
-} from '#imports';
+import { useRuntimeConfig } from '#imports';
 
 const {
   atomizer: { cssPath },
