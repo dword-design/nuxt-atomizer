@@ -1,8 +1,7 @@
 {
   "depcheckConfig": {
     "ignoreMatches": [
-      "playwright",
-      "playwright-chromium"
+      "@playwright/browser-chromium"
     ]
   },
   "name": "@dword-design/nuxt-module",
