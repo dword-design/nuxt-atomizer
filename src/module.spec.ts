@@ -19,7 +19,7 @@ test('atomizer.config.js', async ({ page }, testInfo) => {
         custom: { foo: 'red' },
       };
     `,
-    'nuxt.config.js': endent`
+    'nuxt.config.ts': endent`
       export default {
         modules: ['../../src'],
       };
@@ -63,7 +63,7 @@ test('atomizer.config.ts', async ({ page }, testInfo) => {
         custom: { foo: 'red' },
       };
     `,
-    'nuxt.config.js': endent`
+    'nuxt.config.ts': endent`
       export default {
         modules: ['../../src'],
       };
@@ -102,7 +102,7 @@ test('css', async ({ page }, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'nuxt.config.js': endent`
+    'nuxt.config.ts': endent`
       export default {
         modules: ['../../src'],
       };
@@ -141,7 +141,7 @@ test('multiple files', async ({ page }, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'nuxt.config.js': endent`
+    'nuxt.config.ts': endent`
       export default {
         modules: ['../../src'],
       };
@@ -195,7 +195,7 @@ test('module options', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'nuxt.config.js': endent`
+    'nuxt.config.ts': endent`
       export default {
         modules: [['../../src', { custom: { foo: 'red' } }]],
       };
@@ -231,7 +231,7 @@ test('top-level options', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'nuxt.config.js': endent`
+    'nuxt.config.ts': endent`
       export default {
         atomizer: {
           custom: { foo: 'red' },
@@ -270,7 +270,7 @@ test('variables', async ({ page }, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'nuxt.config.js': endent`
+    'nuxt.config.ts': endent`
       export default {
         atomizer: {
           custom: { foo: 'red' },
