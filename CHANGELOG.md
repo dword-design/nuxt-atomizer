@@ -1,3 +1,16 @@
+# [3.0.0](https://github.com/dword-design/nuxt-atomizer/compare/v2.0.2...v3.0.0) (2026-04-07)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base to v16 ([#151](https://github.com/dword-design/nuxt-atomizer/issues/151)) ([78210a7](https://github.com/dword-design/nuxt-atomizer/commit/78210a70b4886b8986b8e5539893afb5ae4956c0))
+
+
+### BREAKING CHANGES
+
+* node.js >= 22
+* upgrade to nuxt 4. this is likely non-breaking, but since the module now uses the option merging from nuxt, there is a small chance that the merging is different than before.
+
 ## [2.0.2](https://github.com/dword-design/nuxt-atomizer/compare/v2.0.1...v2.0.2) (2025-05-29)
 
 
