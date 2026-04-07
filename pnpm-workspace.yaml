@@ -1,2 +1,2 @@
 onlyBuiltDependencies:
-  - playwright-chromium
+  - '@playwright/browser-chromium'
