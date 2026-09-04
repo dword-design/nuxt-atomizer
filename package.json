@@ -46,7 +46,7 @@
     "jiti": "^2.6.1"
   },
   "devDependencies": {
-    "@dword-design/base": "^16.0.0",
+    "@dword-design/base": "^17.0.0",
     "@dword-design/base-config-nuxt-module": "^5.0.1",
     "@playwright/browser-chromium": "^1.59.1",
     "@playwright/test": "^1.52.0",
